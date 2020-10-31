@@ -1,4 +1,4 @@
-# Ohjelmistotekniikka -kurssin harjoitustyö / Syksy2020
+# Ohjelmistotekniikka, harjoitustyö / Syksy2020
 
 ## Tehtävät
 
