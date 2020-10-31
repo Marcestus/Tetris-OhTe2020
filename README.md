@@ -1,7 +1,5 @@
 # Ohjelmistotekniikka -kurssin harjoitustyö / Syksy2020
 
-Tämän harjoitustyön on luonut *Marcestus*
-
 ## Tehtävät
 
 **Viikko 1**
