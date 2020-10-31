@@ -1,0 +1,114 @@
+commit 33d6126d0b9a7ce694b5d6a106972e23934392da
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Sat Oct 31 16:29:13 2020 +0200
+
+    muutettu file1 nimeä file22 ja poistettu file2
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 8cb8b38d24043b09658d1c4d541031e1dce66911
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Sat Oct 31 16:26:36 2020 +0200
+
+    lisätty kansio tiedostoja ja siihen kolme tiedostoa
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 26b05b95ddedd46224361c308a5ff2adf48b1d97
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Sat Oct 31 16:17:39 2020 +0200
+
+    ekaan ja kolmanteen tehty muutoksia, lisäyksiä ja poistoja
+
+ eka.txt    | 2 +-
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 18e89927d0eb0305ad7dddc7b1178a8047ee6e6a
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Sat Oct 31 16:16:05 2020 +0200
+
+    vaihdettu tiedosto.txt nimi eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 72ab9709f2dd2b9749e0e995aa4bedc6cb1e159c
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Sat Oct 31 16:15:15 2020 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 3fcda573e53abf793e082283032571c958fe4fd7
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Sat Oct 31 16:13:32 2020 +0200
+
+    poistettu tiedosto.txt:stä tekstiä ja lisätty sinne uutta
+
+ tiedosto.txt | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit 936e921c45891cbcc07e365918a29b41bd3d50cf
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Sat Oct 31 16:12:32 2020 +0200
+
+    lisätty tiedosto.txt:hen paljon tekstiä
+
+ tiedosto.txt | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit 5426d193690ab752ef70be6ea5e995538463cde2
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Thu Oct 29 19:43:06 2020 +0200
+
+    stuff kansio ja sinne tiedosto lisätty
+
+ stuff/jokintiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit de16e0675502cacde71a33449297a34cbe237cd7
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Thu Oct 29 19:41:52 2020 +0200
+
+    lisätty tekstiä toiseen ja kolmanteen
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 9a89d93fb8f962bb153a3e064568e5e036d3e548
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Thu Oct 29 19:40:47 2020 +0200
+
+    kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7fdda3b19ff3b5332ae0277211bff13e4c056b22
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Thu Oct 29 19:36:46 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 2e5eb107dc17c0a24bc0248d9024d7ebe5dbd102
+Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
+Date:   Thu Oct 29 19:32:46 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
