@@ -1,3 +1,5 @@
+gitlog-tiedostot, laskarit, viikko1
+
 commit 33d6126d0b9a7ce694b5d6a106972e23934392da
 Author: Marcestus <55045740+Marcestus@users.noreply.github.com>
 Date:   Sat Oct 31 16:29:13 2020 +0200
