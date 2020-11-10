@@ -12,6 +12,8 @@
 
 [Sovelluksen vaatimusmäärittely](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
+Unicafe -tehtävän testikattavuus
+<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko2/Unicafe_testikattavuus.png">
 
 ## Muuta
 
