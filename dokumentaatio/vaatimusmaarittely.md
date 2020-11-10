@@ -2,7 +2,7 @@
 
 ### Sovelluksen tarkoitus
 
-Sovellus on variaatio suositusta *Tetris*-pelistä. Pelissä kerätään pisteitä järjestelemällä itsestään putoavia palikoita kokonaisiksi vaakasuoriksi riveiksi. Kun kokonainen rivi saadaan muodostettua, rivi poistuu ja yläpuolella olevat rivit putoavat yhden alaspäin. Enemmän pisteitä saa, mikäli saa täytettyä useamman rivin samaan aikaan.
+Sovellus on variaatio suositusta *Tetris*-pelistä. Pelissä kerätään pisteitä järjestelemällä tietyllä nopeudella alaspäin putoavia palikoita kokonaisiksi vaakasuoriksi riveiksi. Kun kokonainen rivi saadaan muodostettua, rivi poistuu ja yläpuolella olevat rivit putoavat yhden alaspäin. Enemmän pisteitä saa, mikäli saa täytettyä useamman rivin samaan aikaan.
 
 Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän pisteitä kertyy, sitä nopeampi on palikoiden putoamisnopeus.
 
