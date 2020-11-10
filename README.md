@@ -10,9 +10,9 @@
 
 **Viikko 2**
 
-[Sovelluksen vaatimusmäärittely] (https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+[Sovelluksen vaatimusmäärittely](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 
 ## Muuta
 
-[Työaikakirjanpito] (https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+[Työaikakirjanpito](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
