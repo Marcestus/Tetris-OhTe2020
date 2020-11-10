@@ -60,7 +60,7 @@ Pelin perustoiminnallisuuksia voidaan täydentää ajan salliessa seuraavasti
 
 Sovellus koostuu neljästä eri näkymästä
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/tree/master/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg" width="750">
+<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg">
 
 Sovellus aukeaa alkuvalikkoon, josta voidaan lukea ohjeet ja käynnistää peli näppäimistökomennolla. Pelinäkymässä on itse pelialueen lisäksi highscore ja omat pisteet sekä mahdollisesti tieto seuraavana jonossa odottavasta palikasta.
 
