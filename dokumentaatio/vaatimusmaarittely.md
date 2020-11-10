@@ -15,9 +15,10 @@ Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
 #### Alkuvalikko
 
 - Pelaaja näkee pelin logon ja ohjeistuksen
+- Lisätoiminnallisuuksien toteutuessa pelityylin valinnat voidaan tehdä tässä näkymässä
 - Pelaaja aloittaa pelin näppäimistön komennolla
 
-#### Pelin ydintoiminnallisuudet
+#### Ydintoiminnallisuudet
 
 - Pelissä on seitsemän erimuotoista palikkaa
 - Palikat ilmestyvät yksitellen satunnaisessa järjestyksessä pelialueen yläreunaan, josta ne alkavat pudota kohtisuoraan alaspäin tietyllä nopeudella
@@ -36,25 +37,26 @@ Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
 
 - Kun peli päättyy, pelaaja näkee, riittävätkö hänen pisteensä parhaan viiden pelaajan joukkoon pääsemiseen
 - Mikäli pisteet riittävät, pelaaja pääsee kirjoittamaan nimimerkkinsä leaderboard-listaan (erillinen näkymä)
-  - Mikäli pisteet eivät riitä, pelaaja näkee suoraan leaderboard -näkymän
+- Mikäli pisteet eivät riitä, pelaaja näkee suoraan leaderboardin
 
-#### Jatkokehitysideat
+#### Lisätoiminnallisuudet
 
-Pelin perustoiminnallisuuksia voidaan täydentää ajan salliessa seuraavasti
+Pelin perustoiminnallisuuksia täydennetään ajan salliessa seuraavasti
 
-- Pelaaja voi itse kiihdyttää palikan putoamista näppäimistön komennolla kahdella eri tavalla ja niistä voidaan toteuttaa joko vain toinen tai molemmat
-    - Mikäli molemmat toteutuisivat, pelityylin valinta tapahtuisi alkuvalikossa
+- Pelaaja voi itse kiihdyttää palikan putoamista näppäimistön komennolla kahdella eri tavalla
     1. Palikka putoaa pelaajan komennosta välittömästi kohtisuoraan alaspäin paikoilleen eli kunnes se osuu pelialueen alareunaan tai toisen palikan (tai sen osan) yläreunaan
-    2. Palikan putoamisnopeus kiihtyy silloin, kun pelaaja pitää komennon antavaa näppäimistön painiketta painettuna
-    - Pelityyleille voidaan muodostaa omat leaderboardit
-- Pelialueen viereen voidaan lisätä ruutu, joka näyttää seuraavan jonossa odottavan palikan etukäteen
-  - Tämän toiminnallisuuden voisi valita alkuvalikossa joko päälle tai pois
-  - Pelityyleille voidaan muodostaa omat leaderboardit
-- Palikoiden väri määräytyy sen mukaan, mitä lähempänä pelaaja on pelityylinsä parasta pistetulosta
+    2. Palikan putoamisnopeus kiihtyy silloin, kun pelaaja pitää komennon antavaa painiketta painettuna
+    - Tavoista voidaan toteuttaa jompikumpi tai molemmat
+    - Mikäli molemmat toteutetaan, pelityylin valinta tapahtuu alkuvalikossa
+    - Pelityyleille voidaan toiminnallisuuden toteutuessa muodostaa omat leaderboardit
+- Pelialueen viereen lisätään ruutu, joka näyttää seuraavan jonossa odottavan palikan etukäteen
+  - Tämän toiminnallisuuden voi valita päälle alkuvalikosta
+  - Pelityyleille voidaan toiminnallisuuden toteutuessa muodostaa omat leaderboardit
+- Palikoiden väri muuttuu sen mukaan, mitä lähempänä pelaaja on highscorea, esimerkiksi:
   - pisteitä alle 50% parhaasta tuloksesta: värinä punainen
   - pisteitä 51-75% parhaasta tuloksesta: värinä vaaleanpunainen
   - pisteitä 76-100% parhaasta tuloksesta: värinä vaaleanvihreä
-  - pisteitä yli 100% parhaasta tulokseta: värinä vihreä
+  - pisteitä yli 100% parhaasta tuloksesta: värinä vihreä
 
 ### Käyttöliittymäluonnos
 
