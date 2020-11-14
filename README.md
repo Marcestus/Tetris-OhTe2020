@@ -20,9 +20,9 @@
 
 **Viikko 3**
 
-[teht1_monopoly1.png](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko3/teht1_monopoly1.jpg)
+[teht1_monopoly1.jpg](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko3/teht1_monopoly1.jpg)
 
-[teht2_monopoly2.png](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko3/teht2_monopoly2.jpg)
+[teht2_monopoly2.jpg](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko3/teht2_monopoly2.jpg)
 
 [teht3_machineTankEngine.png](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko3/teht3_machineTankEngine.png)
 
