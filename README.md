@@ -19,6 +19,7 @@
 [Unicafe -tehtävän testikattavuus -kuva](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko2/Unicafe_testikattavuus.png)
 
 **Viikko 3**
+
 [teht1_monopoly1.png](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko3/teht1_monopoly1.jpg)
 
 [teht2_monopoly2.png](https://github.com/Marcestus/ot-harjoitustyo/blob/master/laskarit/viikko3/teht2_monopoly2.jpg)
