@@ -30,11 +30,12 @@ public class TetrisUi extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        //
+        stage.setTitle("Tetris");
+        stage.show();
     }
     
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        launch(TetrisUi.class);
     }
 
     
