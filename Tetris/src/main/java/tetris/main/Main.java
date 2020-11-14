@@ -1,4 +1,6 @@
-package tetris.ui;
+package tetris.main;
+
+import tetris.ui.TetrisUi;
 
 public class Main {
     

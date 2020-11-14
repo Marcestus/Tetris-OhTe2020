@@ -1,6 +1,5 @@
 package tetris.ui;
 
-
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.Properties;
@@ -25,13 +24,19 @@ public class TetrisUi extends Application{
     
     @Override
     public void init() throws Exception {
-        //
+        // sovelluslogiikan alustus
     }
     
     @Override
     public void start(Stage stage) throws Exception {
+        // käyttöliittymä
         stage.setTitle("Tetris");
         stage.show();
+    }
+    
+    @Override
+    public void stop() throws Exception {
+        //lopetustoimenpiteet
     }
     
     public static void main(String[] args) {

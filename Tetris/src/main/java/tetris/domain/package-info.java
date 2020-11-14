@@ -1,0 +1,6 @@
+
+/**
+ * Sovelluslogiikka 
+ */
+
+package tetris.domain;
