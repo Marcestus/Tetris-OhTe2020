@@ -1,7 +1,0 @@
-
-
-/**
- * Käyttöliittymä 
- */
-
-package tetris.ui;
