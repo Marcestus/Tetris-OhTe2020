@@ -1,8 +1,7 @@
 package tetris.ui;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+//Huom! Tämä ei ole varsinainen Main-tiedosto, vaan tetris.main.Main
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import tetris.domain.Shape;
@@ -27,7 +26,6 @@ public class GameView extends Application {
     private Shape currentShape;
     private int counter;
     private GridPane tetrisGrid;
-    private boolean[][] shapes;
     
     public static void main(String[] args) {
         launch(args);
@@ -35,7 +33,7 @@ public class GameView extends Application {
     
     @Override
     public void init() {
-        game = new TetrisGame(BOARD_WIDTH, BOARD_HEIGHT);
+        game = new TetrisGame();
         tetrisGrid = new GridPane();
     }
 

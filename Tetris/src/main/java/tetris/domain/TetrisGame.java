@@ -4,16 +4,14 @@ import java.util.Random;
 
 public class TetrisGame {
     
+    static final int BOARD_HEIGHT = 18;
+    static final int BOARD_WIDTH = 10;
     private int[][] board;
-    private int boardHeight;
-    private int boardWidth;
     private boolean[][] shapes;
         
-    public TetrisGame(int boardWidth, int boardHeight) {
-        this.board = new int[boardWidth][boardHeight];
-        this.boardHeight = boardHeight;
-        this.boardWidth = boardWidth;
-        this.shapes = new boolean[boardWidth][boardHeight];
+    public TetrisGame() {
+        this.board = new int[BOARD_WIDTH][BOARD_HEIGHT];
+        this.shapes = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
     }
     
     //luo uuden palikan
@@ -27,15 +25,14 @@ public class TetrisGame {
             case 3: return new Shape("Z");
             case 4: return new Shape("O");
             case 5: return new Shape("I");
-            case 6: return new Shape("T");
             default: return new Shape("T");
         }
     }
     
     //lisää uuden palikan pelialueen yläreunaan
     public void addNewShapeToBoard(Tile[] tiles) {
-        for (int x = 0; x < this.boardWidth; x++) {
-            for (int y = 0; y < this.boardHeight; y++) {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            for (int y = 0; y < BOARD_HEIGHT; y++) {
                 board[x][y] = 0;
                 shapes[x][y] = false;
             }
@@ -62,8 +59,8 @@ public class TetrisGame {
     
     //avustaa tekstikäyttöliittymää, käy läpi palikan nykyisen sijainnin
     public void currentGameState() {
-        for (int x = 0; x < this.boardWidth; x++) {
-            for (int y = 0; y < this.boardHeight; y++) {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            for (int y = 0; y < BOARD_HEIGHT; y++) {
                 if (this.board[x][y] != 0) {
                     shapes[x][y] = true;
                     System.out.println("kohta " + x + "," + y + ": " + this.board[x][y]);
