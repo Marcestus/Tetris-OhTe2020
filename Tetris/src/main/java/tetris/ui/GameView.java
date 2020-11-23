@@ -26,7 +26,7 @@ import tetris.domain.Tile;
 public class GameView extends Application {
     
     static final int TILE_SIZE = 40;
-    static final int GAME_SPEED = 200;
+    static final int GAME_SPEED = 600;
     private int BOARD_WIDTH;
     private int BOARD_HEIGHT;
     private TetrisGame game;
