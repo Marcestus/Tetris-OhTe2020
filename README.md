@@ -8,7 +8,9 @@ Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän piste
 
 ## Dokumentaatio
 
-[Sovelluksen vaatimusmäärittely](https://github.com/marcestus/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/marcestus/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+[Arkkitehtuurikuvaus](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 [Työaikakirjanpito](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
