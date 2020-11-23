@@ -1,19 +1,35 @@
 package tetris.domain;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TetrisGame {
     
-    static final int BOARD_HEIGHT = 18;
-    static final int BOARD_WIDTH = 10;
-    private int[][] board;
-    private boolean[][] shapes;
-        
+    public final int BOARD_HEIGHT = 20;
+    public final int BOARD_WIDTH = 10;
+    private Shape activeShape;
+    private Tile[] activeShapeTiles;
+    private ArrayList<Tile[]> passiveShapes;
+    boolean moveDownPossible;
+    boolean moveLeftPossible;
+    boolean moveRightPossible;
+    private int edge;
+    private int passiveTileDirectionX;
+    private int passiveTileDirectionY;
+    
     public TetrisGame() {
-        this.board = new int[BOARD_WIDTH][BOARD_HEIGHT];
-        this.shapes = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
+        this.passiveShapes = new ArrayList<>();
+        this.activeShape = createRandomShape();
+        this.activeShapeTiles = activeShape.getTiles();
     }
     
+    //testusta varten luodaan aina ensimmäiseksi palikaksi tietty palikka
+    public TetrisGame(int value) {
+        this.passiveShapes = new ArrayList<>();
+        this.activeShape = createRandomShape(value);
+        this.activeShapeTiles = activeShape.getTiles();
+    }
+
     //luo uuden palikan
     public Shape createRandomShape() {
         Random random = new Random();
@@ -29,44 +45,145 @@ public class TetrisGame {
         }
     }
     
-    //lisää uuden palikan pelialueen yläreunaan
-    public void addNewShapeToBoard(Tile[] tiles) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            for (int y = 0; y < BOARD_HEIGHT; y++) {
-                board[x][y] = 0;
-                shapes[x][y] = false;
-            }
-        }
-        for (int i = 0; i < tiles.length; i++) {
-            int x = tiles[i].getX();
-            int y = tiles[i].getY();
-            board[x][y] = 1;
+    //testausta varten random pois käytöstä, jotta saadaan haluttu palikka
+    public Shape createRandomShape(int value) {
+        switch(value) {
+            case 0: return new Shape("L");
+            case 1: return new Shape("J");
+            case 2: return new Shape("S");
+            case 3: return new Shape("Z");
+            case 4: return new Shape("O");
+            case 5: return new Shape("I");
+            default: return new Shape("T");
         }
     }
     
-    //laskee palikalle uuden kohdan, kun se on tippunut yhden alaspäin
-    public void moveDown(Shape shape) {
-        Tile[] tiles = shape.getTiles();
-        for (int i = 0; i < tiles.length; i++) {
-            tiles[i].setY(tiles[i].getY()+1);
-        }
-        this.addNewShapeToBoard(tiles);
-    }
-
-    public boolean[][] getShapes() {
-        return shapes;
-    }
-    
-    //avustaa tekstikäyttöliittymää, käy läpi palikan nykyisen sijainnin
-    public void currentGameState() {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            for (int y = 0; y < BOARD_HEIGHT; y++) {
-                if (this.board[x][y] != 0) {
-                    shapes[x][y] = true;
-                    System.out.println("kohta " + x + "," + y + ": " + this.board[x][y]);
+    // onko game over eli jääkö aktiivinen palikka yläreunan yläpuolelle
+    public boolean gameOver() {
+        for (Tile activeShapeTile : activeShapeTiles) {
+            // osuu alla olevaan (passiiviseen) palikkaan, ei pääse alaspäin
+            for (Tile[] tiles : passiveShapes) {
+                for (Tile tile : tiles) {
+                    if (activeShapeTile.getY() < 2 && activeShapeTile.getX() == tile.getX() && activeShapeTile.getY() == tile.getY() - 1) {
+                        return true;
+                    }
                 }
             }
         }
+        return false;
+    }
+    
+    // gravitaation vaikutus aktiviseen palikkaan
+    public void moveDown() {
+        // tutkitaan, pääseekö palikka putoamaan alaspäin
+        moveDownPossible = isActiveShapeAbleToMove("down") && isActiveShapeNearAnyEdge("down");
+        // jos pääsee, liikutetaan aktiivista palikkaa alaspäin
+        if (moveDownPossible) {
+            for (Tile activeShapeTile : activeShapeTiles) {
+                activeShapeTile.setY(activeShapeTile.getY() + 1);
+            }
+        }
+        // jos ei, siirretään aktiivinen palikka passiivisten joukkoon
+        else {
+            for (Tile activeShapeTile : activeShapeTiles) {
+                passiveShapes.add(activeShapeTiles);
+            }
+            activeShape = createRandomShape();
+            activeShapeTiles = activeShape.getTiles();
+        }
+    }
+    
+    // liikutetaan aktiivista palikkaa vasempaan
+    public void moveLeft() {
+        // onko liikuttaminen mahdollista
+        moveLeftPossible = isActiveShapeAbleToMove("left") && isActiveShapeNearAnyEdge("left");
+        // jos on, liikutetaan
+        if (moveLeftPossible) {
+            for (Tile activeShapeTile : activeShapeTiles) {
+                activeShapeTile.setX(activeShapeTile.getX() - 1);
+            }
+        }
+        // jos ei, ei tehdä mitään
+    }
+    
+    // liikutetaan aktiivista palikkaa oikealle
+    public void moveRight() {
+        // onko liikuttaminen mahdollista
+        moveRightPossible = isActiveShapeAbleToMove("right") && isActiveShapeNearAnyEdge("right");
+        // jos on, liikutetaan
+        if (moveRightPossible) {
+            for (Tile activeShapeTile : activeShapeTiles) {
+                activeShapeTile.setX(activeShapeTile.getX() + 1);
+            }
+        }
+        // jos ei, ei tehdä mitään
+    }
+    
+    private boolean isActiveShapeNearAnyEdge(String direction) {
+        // tutkitaan, osuuko aktiivinen palikka johonkin reunaan
+        for (Tile activeShapeTile : activeShapeTiles) {
+            // valitaan käytettävä reuna
+            if (direction.equals("right")) {
+                edge = BOARD_WIDTH-1;
+            } else if (direction.equals("left")) {
+                edge = 0;
+            } else if (direction.equals("down")) {
+                edge = BOARD_HEIGHT-1;
+                if (activeShapeTile.getY() == (edge)) {
+                    return false;
+                }
+            }
+            // jos valittuun reunaan osutaan, ei voida liikkua
+            if (activeShapeTile.getX() == (edge)) {
+                return false;
+            }
+            
+        }
+        // jos valittuun reunaan ei osuta, voidaan liikkua
+        return true;
+    }
+    
+    private boolean isActiveShapeAbleToMove(String direction) {
+        // tutkitaan, osuuko aktiivinen palikka passiivisiin palikoihin
+        for (Tile activeShapeTile : activeShapeTiles) {
+            for (Tile[] tiles : passiveShapes) {
+                for (Tile tile : tiles) {
+                    // valitaan tarkasteltava suunta
+                    if (direction.equals("right")) {
+                        passiveTileDirectionX = tile.getX()-1;
+                        passiveTileDirectionY = tile.getY();
+                    } else if (direction.equals("left")) {
+                        passiveTileDirectionX = tile.getX()+1;
+                        passiveTileDirectionY = tile.getY();
+                    } else if (direction.equals("down")) {
+                        passiveTileDirectionX = tile.getX();
+                        passiveTileDirectionY = tile.getY()-1;
+                    }
+                    // jos passiivisiin palikoihin osutaan, ei voida liikkua
+                    if (activeShapeTile.getX() == passiveTileDirectionX && activeShapeTile.getY() == passiveTileDirectionY) {
+                        return false;
+                    }
+                }
+            }
+        }
+        // jos passiivisiin palikoihin ei osuta, voidaan liikkua
+        return true;
+    }
+    
+    public ArrayList<Tile[]> getPassiveShapes() {
+        return passiveShapes;
+    }
+
+    public Tile[] getActiveShapeTiles() {
+        return activeShapeTiles;
+    }
+    
+    public Shape getActiveShape() {
+        return activeShape;
+    }
+
+    public void setActiveShape(Shape activeShape) {
+        this.activeShape = activeShape;
     }
 
 }

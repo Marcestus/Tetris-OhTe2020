@@ -5,34 +5,12 @@ package tetris.domain;
 public class Shape {
     
     private Tile[] tiles;
-    private String type;
+    private final Tile centerTile = new Tile(5,1);
     
     public Shape(String type) {
         this.tiles = new Tile[4];
-        this.tiles[0] = new Tile(5,1);
-        this.type = type;
+        this.tiles[0] = centerTile;
         createShape(type);
-    }
-    
-    public Tile[] getTiles() {
-        return tiles;
-    }
-
-    public void setTiles(Tile[] tiles) {
-        this.tiles = tiles;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Shape{" + "tiles=" + tiles + ", type=" + type + '}';
     }
     
     //loput metodit apuna palikoiden luomisessa
@@ -49,45 +27,50 @@ public class Shape {
     }
     
     private void createL() {
-        this.tiles[1] = new Tile(6,0);
-        this.tiles[2] = new Tile(4,1);
-        this.tiles[3] = new Tile(6,1);
+        this.tiles[1] = new Tile(centerTile.getX()+1,centerTile.getY()-1);
+        this.tiles[2] = new Tile(centerTile.getX()-1,centerTile.getY());
+        this.tiles[3] = new Tile(centerTile.getX()+1,centerTile.getY());
     }
     
     private void createJ() {
-        this.tiles[1] = new Tile(4,0);
-        this.tiles[2] = new Tile(4,1);
-        this.tiles[3] = new Tile(6,1);
+        this.tiles[1] = new Tile(centerTile.getX()-1,centerTile.getY()-1);
+        this.tiles[2] = new Tile(centerTile.getX()-1,centerTile.getY());
+        this.tiles[3] = new Tile(centerTile.getX()+1,centerTile.getY());
     }
     
     private void createS() {
-        this.tiles[1] = new Tile(5,0);
-        this.tiles[2] = new Tile(6,0);
-        this.tiles[3] = new Tile(4,1);
+        this.tiles[1] = new Tile(centerTile.getX()-1,centerTile.getY());
+        this.tiles[2] = new Tile(centerTile.getX(),centerTile.getY()-1);
+        this.tiles[3] = new Tile(centerTile.getX()+1,centerTile.getY()-1);
     }
     
     private void createZ() {
-        this.tiles[1] = new Tile(4,0);
-        this.tiles[2] = new Tile(5,0);
-        this.tiles[3] = new Tile(6,1);
+        this.tiles[1] = new Tile(centerTile.getX()-1,centerTile.getY()-1);
+        this.tiles[2] = new Tile(centerTile.getX(),centerTile.getY()-1);
+        this.tiles[3] = new Tile(centerTile.getX()+1,centerTile.getY());
     }
     
     private void createO() {
-        this.tiles[1] = new Tile(4,0);
-        this.tiles[2] = new Tile(5,0);
-        this.tiles[3] = new Tile(4,1);
+        this.tiles[1] = new Tile(centerTile.getX()-1,centerTile.getY()-1);
+        this.tiles[2] = new Tile(centerTile.getX(),centerTile.getY()-1);
+        this.tiles[3] = new Tile(centerTile.getX()-1,centerTile.getY());
     }
     
     private void createI() {
-        this.tiles[1] = new Tile(3,1);
-        this.tiles[2] = new Tile(4,1);
-        this.tiles[3] = new Tile(6,1);
+        this.tiles[1] = new Tile(centerTile.getX()-2,centerTile.getY());
+        this.tiles[2] = new Tile(centerTile.getX()-1,centerTile.getY());
+        this.tiles[3] = new Tile(centerTile.getX()+1,centerTile.getY());
     }
     
     private void createT() {
-        this.tiles[1] = new Tile(5,0);
-        this.tiles[2] = new Tile(4,1);
-        this.tiles[3] = new Tile(6,1);
+        this.tiles[1] = new Tile(centerTile.getX(),centerTile.getY()-1);
+        this.tiles[2] = new Tile(centerTile.getX()-1,centerTile.getY());
+        this.tiles[3] = new Tile(centerTile.getX()+1,centerTile.getY());
     }
     
+    
+    public Tile[] getTiles() {
+        return tiles;
+    }
+
 }
