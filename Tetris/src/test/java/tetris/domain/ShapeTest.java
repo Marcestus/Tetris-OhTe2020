@@ -9,66 +9,81 @@ import static org.junit.Assert.*;
 
 public class ShapeTest {
     
+    TetrisGame game;
+    
     @Before
     public void setUp() {
         
     }
     
     @Test
-    public void LShapeIsGenerated() {
-        Shape shape = new Shape("L");
-        Tile[] tiles = shape.getTiles();
+    public void LShapeIsGeneratedProperly() {
+        Shape shapeL = new Shape("L");
+        Tile[] tiles = shapeL.getTiles();
+        assertEquals(5,tiles[0].getX());
         assertEquals(6,tiles[1].getX());
         assertEquals(4,tiles[2].getX());
         assertEquals(6,tiles[3].getX());
     }
     
-    public void JShapeIsGenerated() {
-        Shape shape = new Shape("J");
-        Tile[] tiles = shape.getTiles();
+    @Test
+    public void JShapeIsGeneratedProperly() {
+        Shape shapeJ = new Shape("J");
+        Tile[] tiles = shapeJ.getTiles();
+        assertEquals(5,tiles[0].getX());
         assertEquals(4,tiles[1].getX());
         assertEquals(4,tiles[2].getX());
         assertEquals(6,tiles[3].getX());
     }
     
-    public void SShapeIsGenerated() {
-        Shape shape = new Shape("S");
-        Tile[] tiles = shape.getTiles();
-        assertEquals(5,tiles[1].getX());
-        assertEquals(4,tiles[2].getX());
-        assertEquals(6,tiles[3].getX());
-    }
-    
-    public void ZShapeIsGenerated() {
-        Shape shape = new Shape("Z");
-        Tile[] tiles = shape.getTiles();
+    @Test
+    public void SShapeIsGeneratedProperly() {
+        Shape shapeS = new Shape("S");
+        Tile[] tiles = shapeS.getTiles();
+        assertEquals(5,tiles[0].getX());
         assertEquals(4,tiles[1].getX());
         assertEquals(5,tiles[2].getX());
         assertEquals(6,tiles[3].getX());
     }
     
-    public void OShapeIsGenerated() {
-        Shape shape = new Shape("O");
-        Tile[] tiles = shape.getTiles();
+    @Test
+    public void ZShapeIsGeneratedProperly() {
+        Shape shapeZ = new Shape("Z");
+        Tile[] tiles = shapeZ.getTiles();
+        assertEquals(5,tiles[0].getX());
+        assertEquals(4,tiles[1].getX());
+        assertEquals(5,tiles[2].getX());
+        assertEquals(6,tiles[3].getX());
+    }
+    
+    @Test
+    public void OShapeIsGeneratedProperly() {
+        Shape shapeO = new Shape("O");
+        Tile[] tiles = shapeO.getTiles();
+        assertEquals(5,tiles[0].getX());
         assertEquals(4,tiles[1].getX());
         assertEquals(5,tiles[2].getX());
         assertEquals(4,tiles[3].getX());
     }
     
-    public void IShapeIsGenerated() {
-        Shape shape = new Shape("I");
-        Tile[] tiles = shape.getTiles();
+    @Test
+    public void IShapeIsGeneratedProperly() {
+        Shape shapeI = new Shape("I");
+        Tile[] tiles = shapeI.getTiles();
+        assertEquals(5,tiles[0].getX());
         assertEquals(3,tiles[1].getX());
         assertEquals(4,tiles[2].getX());
         assertEquals(6,tiles[3].getX());
     }
     
-    public void TShapeIsGenerated() {
-        Shape shape = new Shape("T");
-        Tile[] tiles = shape.getTiles();
+    @Test
+    public void TShapeIsGeneratedProperly() {
+        Shape shapeT = new Shape("T");
+        Tile[] tiles = shapeT.getTiles();
+        assertEquals(5,tiles[0].getX());
         assertEquals(5,tiles[1].getX());
         assertEquals(4,tiles[2].getX());
         assertEquals(6,tiles[3].getX());
     }
-
 }
+
