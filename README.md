@@ -4,7 +4,7 @@ Sovellus on variaatio suositusta Tetris-pelistä. Pelissä kerätään pisteitä
 
 Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän pisteitä kertyy, sitä nopeampi on palikoiden putoamisnopeus.
 
-**Huom. Ohjelmasta on valmiina vain pieni osa. Tällä hetkellä esimerkiksi pelialueen yläreunaan generoituvia palikoita ei voi vielä ohjata, vaan ne laskeutuvat yksitellen alalaitaan ja häviävät.**
+**Huom. Ohjelmasta on valmiina vain pieni osa. Tällä hetkellä esimerkiksi pelialueen yläreunaan generoituvia palikoita ei voi vielä kääntää eivätkä täydet rivit poistu.**
 
 ## Dokumentaatio
 
@@ -18,25 +18,26 @@ Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän piste
 
 ### Testaus
 
-Testit suoritetaan komennolla *mvn test*
+Testit suoritetaan komennolla **mvn test**
 
-Testikattavuusraportti luodaan komennolla *mvn jacoco:report*, jonka jälkeen tiedoston *'target/site/jacoco/index.html'* voi avata selaimeen
+Testikattavuusraportti luodaan komennolla **mvn jacoco:report**, jonka jälkeen tiedoston *'target/site/jacoco/index.html'* voi avata selaimeen
 
 ### Suoritettavan jarin generointi
 
-Komento *mvn package* generoi hakemistoon *'target/'* suoritettavan jar-tiedoston *'Tetris-1.0-SNAPSHOT.jar'*
+Komento **mvn package** generoi hakemistoon *'target/'* suoritettavan jar-tiedoston *'Tetris-1.0-SNAPSHOT.jar'*
 
-Komento *mvn clean* tyhjentää target-tiedoston
+Komento **mvn clean** tyhjentää target-tiedoston
 
 ### Ohjelman suorittaminen komentoriviltä
 
-Komento *mvn compile exec:java -Dexec.mainClass=tetris.main.Main* suorittaa ohjelman komentorivillä
+Komento **mvn compile exec:java -Dexec.mainClass=tetris.main.Main** suorittaa ohjelman komentorivillä
 
-### JavaDoc ja Checkstyle
+### Checkstyle
 
-**Huom. Näitä ei ole vielä aloitettu**
+Tiedostoon checkstyle.xml määritellyt tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle** ja mahdollisia virheilmoituksia voi tarkastella avamaalla tiedoston '*target/site/checstyle.html'* selaimeen
 
-JavaDoc generoidaan komennolla *mvn javadoc:javadoc*, jonka jälkeen tiedoston *'target/site/apidocs/index.html'* voi avata selaimeen
+### JavaDoc 
 
-Tiedostoon checkstyle.xml määritellyt tarkistukset suoritetaan komennolla *mvn jxr:jxr checkstyle:checkstyle* ja mahdollisia virheilmoituksia voi tarkastella avamaalla tiedoston target/site/checstyle.html selaimeen
+**Huom. Tätä ei ole vielä aloitettu**
 
+JavaDoc generoidaan komennolla **mvn javadoc:javadoc**, jonka jälkeen tiedoston *'target/site/apidocs/index.html'* voi avata selaimeen
