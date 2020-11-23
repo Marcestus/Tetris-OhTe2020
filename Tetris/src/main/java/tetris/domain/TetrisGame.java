@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class TetrisGame {
     
-    public final int BOARD_HEIGHT = 20;
-    public final int BOARD_WIDTH = 10;
+    public final int boardHeight = 20;
+    public final int boardWidth = 10;
     private Shape activeShape;
     private Tile[] activeShapeTiles;
     private ArrayList<Tile[]> passiveShapes;
@@ -34,7 +34,7 @@ public class TetrisGame {
     public Shape createRandomShape() {
         Random random = new Random();
         int value = random.nextInt(7);
-        switch(value) {
+        switch (value) {
             case 0: return new Shape("L");
             case 1: return new Shape("J");
             case 2: return new Shape("S");
@@ -47,7 +47,7 @@ public class TetrisGame {
     
     //testausta varten random pois käytöstä, jotta saadaan haluttu palikka
     public Shape createRandomShape(int value) {
-        switch(value) {
+        switch (value) {
             case 0: return new Shape("L");
             case 1: return new Shape("J");
             case 2: return new Shape("S");
@@ -76,15 +76,14 @@ public class TetrisGame {
     // gravitaation vaikutus aktiviseen palikkaan
     public void moveDown() {
         // tutkitaan, pääseekö palikka putoamaan alaspäin
-        moveDownPossible = isActiveShapeAbleToMove("down") && isActiveShapeNearAnyEdge("down");
+        moveDownPossible = canActiveShapeMove("down") && isActiveShapeNearAnyEdge("down");
         // jos pääsee, liikutetaan aktiivista palikkaa alaspäin
         if (moveDownPossible) {
             for (Tile activeShapeTile : activeShapeTiles) {
                 activeShapeTile.setY(activeShapeTile.getY() + 1);
             }
-        }
-        // jos ei, siirretään aktiivinen palikka passiivisten joukkoon
-        else {
+        } else {
+            // jos ei, siirretään aktiivinen palikka passiivisten joukkoon
             for (Tile activeShapeTile : activeShapeTiles) {
                 passiveShapes.add(activeShapeTiles);
             }
@@ -96,7 +95,7 @@ public class TetrisGame {
     // liikutetaan aktiivista palikkaa vasempaan
     public void moveLeft() {
         // onko liikuttaminen mahdollista
-        moveLeftPossible = isActiveShapeAbleToMove("left") && isActiveShapeNearAnyEdge("left");
+        moveLeftPossible = canActiveShapeMove("left") && isActiveShapeNearAnyEdge("left");
         // jos on, liikutetaan
         if (moveLeftPossible) {
             for (Tile activeShapeTile : activeShapeTiles) {
@@ -109,7 +108,7 @@ public class TetrisGame {
     // liikutetaan aktiivista palikkaa oikealle
     public void moveRight() {
         // onko liikuttaminen mahdollista
-        moveRightPossible = isActiveShapeAbleToMove("right") && isActiveShapeNearAnyEdge("right");
+        moveRightPossible = canActiveShapeMove("right") && isActiveShapeNearAnyEdge("right");
         // jos on, liikutetaan
         if (moveRightPossible) {
             for (Tile activeShapeTile : activeShapeTiles) {
@@ -124,11 +123,11 @@ public class TetrisGame {
         for (Tile activeShapeTile : activeShapeTiles) {
             // valitaan käytettävä reuna
             if (direction.equals("right")) {
-                edge = BOARD_WIDTH-1;
+                edge = boardWidth - 1;
             } else if (direction.equals("left")) {
                 edge = 0;
             } else if (direction.equals("down")) {
-                edge = BOARD_HEIGHT-1;
+                edge = boardHeight - 1;
                 if (activeShapeTile.getY() == (edge)) {
                     return false;
                 }
@@ -143,21 +142,21 @@ public class TetrisGame {
         return true;
     }
     
-    private boolean isActiveShapeAbleToMove(String direction) {
+    private boolean canActiveShapeMove(String direction) {
         // tutkitaan, osuuko aktiivinen palikka passiivisiin palikoihin
         for (Tile activeShapeTile : activeShapeTiles) {
             for (Tile[] tiles : passiveShapes) {
                 for (Tile tile : tiles) {
                     // valitaan tarkasteltava suunta
                     if (direction.equals("right")) {
-                        passiveTileDirectionX = tile.getX()-1;
+                        passiveTileDirectionX = tile.getX() - 1;
                         passiveTileDirectionY = tile.getY();
                     } else if (direction.equals("left")) {
-                        passiveTileDirectionX = tile.getX()+1;
+                        passiveTileDirectionX = tile.getX() + 1;
                         passiveTileDirectionY = tile.getY();
                     } else if (direction.equals("down")) {
                         passiveTileDirectionX = tile.getX();
-                        passiveTileDirectionY = tile.getY()-1;
+                        passiveTileDirectionY = tile.getY() - 1;
                     }
                     // jos passiivisiin palikoihin osutaan, ei voida liikkua
                     if (activeShapeTile.getX() == passiveTileDirectionX && activeShapeTile.getY() == passiveTileDirectionY) {

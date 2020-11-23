@@ -27,8 +27,8 @@ public class GameView extends Application {
     
     static final int TILE_SIZE = 40;
     static final int GAME_SPEED = 600;
-    private int BOARD_WIDTH;
-    private int BOARD_HEIGHT;
+    private int boardWidth;
+    private int boardHeight;
     private TetrisGame game;
     private GridPane tetrisGrid;
     private Scene scene;
@@ -50,22 +50,22 @@ public class GameView extends Application {
     public void init() {
         
         game = new TetrisGame();
-        BOARD_WIDTH = game.BOARD_WIDTH;
-        BOARD_HEIGHT = game.BOARD_HEIGHT;
+        boardWidth = game.boardWidth;
+        boardHeight = game.boardHeight;
         activeShape = new Tile[4];
-        activeShapeLocation = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
+        activeShapeLocation = new boolean[boardWidth][boardHeight];
         passiveShapes = new ArrayList<>();
-        passiveShapesLocation = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
+        passiveShapesLocation = new boolean[boardWidth][boardHeight];
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         tetrisGrid = new GridPane();
-        tetrisGrid.setPrefSize(BOARD_WIDTH*TILE_SIZE, (BOARD_HEIGHT)*TILE_SIZE);
+        tetrisGrid.setPrefSize(boardWidth * TILE_SIZE, boardHeight * TILE_SIZE);
         tetrisGrid.setAlignment(Pos.CENTER);
         tetrisGrid.setVgap(3);
         tetrisGrid.setHgap(3);
-        tetrisGrid.setPadding(new Insets(3,3,3,3));
+        tetrisGrid.setPadding(new Insets(3, 3, 3, 3));
         
         instructionsText = new Label("Liikuta palikkaa nuolinäppäimillä:"
                 + "\n" + "LEFT - palikka liikkuu vasempaan"
@@ -76,7 +76,7 @@ public class GameView extends Application {
         infoScreen.setSpacing(25);
         
         gameArea = new HBox();
-        gameArea.setPrefSize(BOARD_WIDTH*TILE_SIZE+350, BOARD_HEIGHT*TILE_SIZE+50);
+        gameArea.setPrefSize(boardWidth * TILE_SIZE + 350, boardHeight * TILE_SIZE + 50);
         gameArea.setAlignment(Pos.CENTER);
         gameArea.setSpacing(25);
         
@@ -129,8 +129,8 @@ public class GameView extends Application {
         gameArea.getChildren().clear();
         tetrisGrid.getChildren().clear();
         // nollataan aktiivisen palikan koordinaatit
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            for (int y = 2; y < BOARD_HEIGHT; y++) {
+        for (int x = 0; x < boardWidth; x++) {
+            for (int y = 2; y < boardHeight; y++) {
                 activeShapeLocation[x][y] = false;
             }
         }
@@ -155,14 +155,14 @@ public class GameView extends Application {
             gameStatusText = new Label("Game status:" + "\n" + "Game on!");
         }
         // lisätään kaikki komponentit pelinäkymään
-        infoScreen.getChildren().addAll(instructionsText,gameStatusText);
-        gameArea.getChildren().addAll(tetrisGrid,infoScreen);
+        infoScreen.getChildren().addAll(instructionsText, gameStatusText);
+        gameArea.getChildren().addAll(tetrisGrid, infoScreen);
     }
     
     private void colorTiles() {
         // väritetään neliöt edellä luotujen listojen mukaan
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            for (int y = 2; y < BOARD_HEIGHT; y++) {
+        for (int x = 0; x < boardWidth; x++) {
+            for (int y = 2; y < boardHeight; y++) {
                 Rectangle rect = new Rectangle(TILE_SIZE, TILE_SIZE);
                 if (activeShapeLocation[x][y]) {
                     rect.setFill(Color.GREEN);
