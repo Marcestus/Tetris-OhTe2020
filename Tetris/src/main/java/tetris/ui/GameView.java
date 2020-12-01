@@ -69,7 +69,8 @@ public class GameView extends Application {
         
         instructionsText = new Label("Liikuta palikkaa nuolinäppäimillä:"
                 + "\n" + "LEFT - palikka liikkuu vasempaan"
-                + "\n" + "RIGHT - palikka liikkuu oikealle");
+                + "\n" + "RIGHT - palikka liikkuu oikealle"
+                + "\n" + "UP - palikka kääntyy myötäpäivään");
         
         infoScreen = new VBox();
         infoScreen.setAlignment(Pos.CENTER);
@@ -118,6 +119,9 @@ public class GameView extends Application {
                 game.moveLeft();
             } else if (key.getCode().equals(KeyCode.RIGHT)) {
                 game.moveRight();
+            }
+            else if (key.getCode().equals(KeyCode.UP)) {
+                game.rotate();
             }
             drawGameState();
         });

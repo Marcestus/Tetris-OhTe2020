@@ -6,10 +6,14 @@ public class Shape {
     
     private Tile[] tiles;
     private final Tile centerTile = new Tile(5, 1);
+    private String type;
+    private int orientation;
     
     public Shape(String type) {
         this.tiles = new Tile[4];
         this.tiles[0] = centerTile;
+        this.type = type;
+        this.orientation = 1;
         createShape(type);
     }
     
@@ -53,9 +57,9 @@ public class Shape {
     }
     
     private void createS() {
-        this.tiles[1] = new Tile(centerTile.getX() - 1, centerTile.getY());
+        this.tiles[1] = new Tile(centerTile.getX() + 1, centerTile.getY() - 1);
         this.tiles[2] = new Tile(centerTile.getX(), centerTile.getY() - 1);
-        this.tiles[3] = new Tile(centerTile.getX() + 1, centerTile.getY() - 1);
+        this.tiles[3] = new Tile(centerTile.getX() - 1, centerTile.getY());
     }
     
     private void createZ() {
@@ -87,4 +91,15 @@ public class Shape {
         return tiles;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public int getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
+    }
 }
