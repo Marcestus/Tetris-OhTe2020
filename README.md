@@ -4,7 +4,7 @@ Sovellus on variaatio suositusta Tetris-pelistä. Pelissä kerätään pisteitä
 
 Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän pisteitä kertyy, sitä nopeampi on palikoiden putoamisnopeus.
 
-**Huom. Ohjelma on vasta osittain valmis. Tällä hetkellä esimerkiksi pelialueen yläreunaan generoituvia palikoita ei voi vielä kääntää eivätkä täydet rivit poistu.**
+**Huom. Ohjelma on vasta osittain valmis. Tällä hetkellä täydet rivit eivät vielä poistu graafisessa liittymässä.**
 
 ## Dokumentaatio
 
