@@ -21,7 +21,15 @@
 | 23.11. | 1    | koodin laadun parantelua (metodien lyhentämistä yms.) |
 |        | 2    | testien luominen, checkstyle käyttöönotto ja siihen liittyvää koodin korjausta |
 |        | 1    | dokumentaatio: arkkitehtuurikuvaus, tehty-merkinnät vaatimusmäärittelyyn, työaikakirjanpidon sisällön tarkentaminen |
-| yht    | 37   | |
+| 29.11. | 4    | perustoiminnallisuuksien suunnittelua ja koodaamista: palikoiden kääntyminen |
+| 30.11. | 3    | perustoiminnallisuuksien koodaamista: palikoiden kääntyminen |
+|        | 1    | edellisen koodin parantelua |
+| 1.12.  | 2    | edellisen koodin parantelua |
+|        | 1    | testien luominen |
+| 2.12.  | 1    | sovelluksen toimivuuden varmistaminen, testien viimeistely |
+|        | 1    | release, sovelluksen toimivuuden varmistaminen eri alustoilla (.jar, etäyhteys yms.) |
+|        | 1    | dokumentaatio: sekvenssikaavio ja arkkitehtuurikuvaus, README.md linkit |
+| yht    | 41   | |
 
 
 vko 2 yht. 4 tuntia
@@ -30,5 +38,7 @@ vko 3 yht. 21 tuntia
 
 vko 4 yht. 12 tuntia
 
-**koko kurssi yhteensä 37 tuntia**
+vko 5 yht. 14 tuntia
+
+**koko kurssi yhteensä 41 tuntia**
 
