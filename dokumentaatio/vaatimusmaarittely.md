@@ -23,10 +23,10 @@ Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
 - Pelissä on seitsemän erimuotoista palikkaa **(tehty vko3)**
 - Palikat ilmestyvät yksitellen satunnaisessa järjestyksessä pelialueen yläreunaan, josta ne alkavat pudota kohtisuoraan alaspäin tietyllä nopeudella **(tehty vko3)**
   - Palikoiden määrää ei ole rajattu **(tehty vko3)**
-- Pelaaja voi liikuttaa putoavaa palikkaa vasemmalle ja oikealle sekä kääntää sitä myötäpäivään 90 astetta kerrallaan **(liikutus vasemmalle ja oikealle tehty vko4)**
+- Pelaaja voi liikuttaa putoavaa palikkaa vasemmalle ja oikealle sekä kääntää sitä myötäpäivään 90 astetta kerrallaan **(liikutus vasemmalle ja oikealle tehty vko4, kääntäminen tehty vko5)**
   - Palikoita ei voi liikuttaa toisten palikoiden eikä pelialueen reunojen päälle **(tehty vko4)**
 - Kun palikka tippuu pelialueen alareunaan tai osuu toisen palikan (tai sen osan) yläreunaan, palikka jäätyy paikoilleen ja seuraava palikka alkaa pudota pelialueen yläreunasta **(tehty vko4)**
-- Kun pelaaja on saanut muodostettua palikoista kokonaisen vaakasuoran rivin, rivi poistuu
+- Kun pelaaja on saanut muodostettua palikoista kokonaisen vaakasuoran rivin, rivi poistuu **(aloitettu vko5)**
   - Kaikki poistuneen rivin yläpuolella olleet rivit siirtyvät samalla yhden rivin alaspäin
 - Poistuvat rivit kerryttävät pelaajalle pisteitä
   - Mitä useamman rivin pelaaja saa poistettua kerralla, sitä enemmän pisteitä kertyy
