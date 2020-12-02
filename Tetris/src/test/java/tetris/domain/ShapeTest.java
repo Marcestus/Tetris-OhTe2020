@@ -41,9 +41,9 @@ public class ShapeTest {
         Shape shapeS = new Shape("S");
         Tile[] tiles = shapeS.getTiles();
         assertEquals(5,tiles[0].getX());
-        assertEquals(4,tiles[1].getX());
+        assertEquals(6,tiles[1].getX());
         assertEquals(5,tiles[2].getX());
-        assertEquals(6,tiles[3].getX());
+        assertEquals(4,tiles[3].getX());
     }
     
     @Test

@@ -3,7 +3,7 @@ package tetris.ui;
 //Huom! Tämä ei ole varsinainen Main-tiedosto, vaan tetris.main.Main
 //(jotta jar, maven ja javaFX toimivat yhteen)
 
-import java.util.ArrayList;
+import java.util.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import tetris.domain.TetrisGame;
@@ -32,15 +32,12 @@ public class GameView extends Application {
     private TetrisGame game;
     private GridPane tetrisGrid;
     private Scene scene;
-    private Tile[] activeShape;
     private boolean[][] activeShapeLocation;
-    private ArrayList<Tile[]> passiveShapes;
     private boolean[][] passiveShapesLocation;
     private Label instructionsText;
     private Label gameStatusText;
     private HBox gameArea;
     private VBox infoScreen;
-    
     
     public static void main(String[] args) {
         launch(args);
@@ -48,13 +45,10 @@ public class GameView extends Application {
 
     @Override
     public void init() {
-        
         game = new TetrisGame();
         boardWidth = game.boardWidth;
         boardHeight = game.boardHeight;
-        activeShape = new Tile[4];
         activeShapeLocation = new boolean[boardWidth][boardHeight];
-        passiveShapes = new ArrayList<>();
         passiveShapesLocation = new boolean[boardWidth][boardHeight];
     }
 
@@ -70,7 +64,7 @@ public class GameView extends Application {
         instructionsText = new Label("Liikuta palikkaa nuolinäppäimillä:"
                 + "\n" + "LEFT - palikka liikkuu vasempaan"
                 + "\n" + "RIGHT - palikka liikkuu oikealle"
-                + "\n" + "UP - palikka kääntyy myötäpäivään");
+                + "\n" + "UP - palikka kääntyy");
         
         infoScreen = new VBox();
         infoScreen.setAlignment(Pos.CENTER);
@@ -106,6 +100,7 @@ public class GameView extends Application {
                 drawGameState();
             }
             game.moveDown();
+            game.checkForFullRows();
             drawGameState();
         });
         shapeMove.getChildren().add(shapePause);
@@ -133,23 +128,11 @@ public class GameView extends Application {
         gameArea.getChildren().clear();
         tetrisGrid.getChildren().clear();
         // nollataan aktiivisen palikan koordinaatit
-        for (int x = 0; x < boardWidth; x++) {
-            for (int y = 2; y < boardHeight; y++) {
-                activeShapeLocation[x][y] = false;
-            }
-        }
+        game.resetActiveShapeCoord();
         // lisätään aktiivisen palikan koordinaatit listaan
-        activeShape = game.getActiveShapeTiles();
-        for (Tile activeShapeTile : activeShape) {
-            activeShapeLocation[activeShapeTile.getX()][activeShapeTile.getY()] = true;
-        }
+        activeShapeLocation = game.getActiveShapeCoord();
         // lisätään passiivisten palikoiden koordinaatit listaan
-        passiveShapes = game.getPassiveShapes();
-        for (Tile[] tiles : passiveShapes) {
-            for (Tile passiveShapeTile : tiles) {
-                passiveShapesLocation[passiveShapeTile.getX()][passiveShapeTile.getY()] = true;
-            }
-        }
+        passiveShapesLocation = game.getPassiveTileCoord();
         // väritetään neliöt edellä luotujen listojen mukaan
         colorTiles();
         // pidetään yllä gameStatus-tekstiä
