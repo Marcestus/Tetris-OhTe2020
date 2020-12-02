@@ -29,7 +29,7 @@
 | 2.12.  | 1    | sovelluksen toimivuuden varmistaminen, testien viimeistely |
 |        | 1    | release, sovelluksen toimivuuden varmistaminen eri alustoilla (.jar, etäyhteys yms.) |
 |        | 1    | dokumentaatio: sekvenssikaavio ja arkkitehtuurikuvaus, README.md linkit |
-| yht    | 41   | |
+| yht    | 51   | |
 
 
 vko 2 yht. 4 tuntia
@@ -40,5 +40,5 @@ vko 4 yht. 12 tuntia
 
 vko 5 yht. 14 tuntia
 
-**koko kurssi yhteensä 41 tuntia**
+**koko kurssi yhteensä 51 tuntia**
 
