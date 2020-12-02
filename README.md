@@ -14,6 +14,10 @@ Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän piste
 
 [Työaikakirjanpito](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
+## Releaset
+
+[Viikko 5](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Komentorivitoiminnot
 
 ### Testaus
