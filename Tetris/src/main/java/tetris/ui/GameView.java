@@ -3,7 +3,6 @@ package tetris.ui;
 //Huom! Tämä ei ole varsinainen Main-tiedosto, vaan tetris.main.Main
 //(jotta jar, maven ja javaFX toimivat yhteen)
 
-import java.util.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import tetris.domain.TetrisGame;
@@ -22,12 +21,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import tetris.domain.GameSpeed;
 
 public class GameView extends Application {
     
     static final int tileSize = 40;
-    //private int gameSpeed = 600;
     private int boardWidth;
     private int boardHeight;
     private TetrisGame game;
@@ -77,8 +74,8 @@ public class GameView extends Application {
         
         scene = new Scene(gameScene);
         
-        currentGameSpeed = game.gameSpeed();
         refreshGameScene();
+        currentGameSpeed = game.gameSpeed();
         createGravity();
         createControls();
         

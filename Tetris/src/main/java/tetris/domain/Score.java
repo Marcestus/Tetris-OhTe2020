@@ -11,7 +11,7 @@ public class Score {
         this.points = 0;
         this.level = 0;
         this.linesCleared = 0;
-        this.maxLevel = 5;
+        this.maxLevel = 10;
         this.maxLevelReached = false;
     }
 
