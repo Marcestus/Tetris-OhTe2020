@@ -26,11 +26,11 @@ Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
 - Pelaaja voi liikuttaa putoavaa palikkaa vasemmalle ja oikealle sekä kääntää sitä myötäpäivään 90 astetta kerrallaan **(liikutus vasemmalle ja oikealle tehty vko4, kääntäminen tehty vko5)**
   - Palikoita ei voi liikuttaa toisten palikoiden eikä pelialueen reunojen päälle **(tehty vko4)**
 - Kun palikka tippuu pelialueen alareunaan tai osuu toisen palikan (tai sen osan) yläreunaan, palikka jäätyy paikoilleen ja seuraava palikka alkaa pudota pelialueen yläreunasta **(tehty vko4)**
-- Kun pelaaja on saanut muodostettua palikoista kokonaisen vaakasuoran rivin, rivi poistuu **(aloitettu vko5)**
-  - Kaikki poistuneen rivin yläpuolella olleet rivit siirtyvät samalla yhden rivin alaspäin
-- Poistuvat rivit kerryttävät pelaajalle pisteitä
-  - Mitä useamman rivin pelaaja saa poistettua kerralla, sitä enemmän pisteitä kertyy
-- Mitä enemmän pisteitä kertyy, sitä nopeampi on palikoiden perus-putoamisnopeus
+- Kun pelaaja on saanut muodostettua palikoista kokonaisen vaakasuoran rivin, rivi poistuu **(tehty vko6)**
+  - Kaikki poistuneen rivin yläpuolella olleet rivit siirtyvät samalla yhden rivin alaspäin **(tehty vko6)**
+- Poistuvat rivit kerryttävät pelaajalle pisteitä **(tehty vko6)**
+  - Mitä useamman rivin pelaaja saa poistettua kerralla, sitä enemmän pisteitä kertyy **(tehty vko6)**
+- Mitä enemmän pisteitä kertyy, sitä nopeampi on palikoiden perus-putoamisnopeus **(tehty vko6)**
 - Peli päättyy, kun pelaaja ei saa pidettyä palikoita enää pelialueella, eli kun palikka tai sen osa jää pelialueen yläreunan yläpuolelle **(tehty vko4)**
 
 #### Leaderboard -näkymä
@@ -44,7 +44,7 @@ Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
 Pelin perustoiminnallisuuksia täydennetään ajan salliessa seuraavasti
 
 - Pelaaja voi itse kiihdyttää palikan putoamista näppäimistön komennolla kahdella eri tavalla
-    1. Palikka putoaa pelaajan komennosta välittömästi kohtisuoraan alaspäin paikoilleen eli kunnes se osuu pelialueen alareunaan tai toisen palikan (tai sen osan) yläreunaan
+    1. Palikka putoaa pelaajan komennosta välittömästi kohtisuoraan alaspäin paikoilleen eli kunnes se osuu pelialueen alareunaan tai toisen palikan (tai sen osan) yläreunaan **(tehty vko6)**
     2. Palikan putoamisnopeus kiihtyy silloin, kun pelaaja pitää komennon antavaa painiketta painettuna
     - Tavoista voidaan toteuttaa jompikumpi tai molemmat
     - Mikäli molemmat toteutetaan, pelityylin valinta tapahtuu alkuvalikossa
