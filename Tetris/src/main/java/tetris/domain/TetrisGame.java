@@ -8,8 +8,7 @@ public class TetrisGame {
     public final int boardWidth = 10;
     private Shape activeShape;
     private Tile[] activeShapeTiles;
-    private ArrayList<Tile[]> passiveShapes;
-    boolean moveDownPossible;
+    boolean moveDownPossible; 
     boolean moveLeftPossible;
     boolean moveRightPossible;
     private int edge;
@@ -26,11 +25,20 @@ public class TetrisGame {
     private boolean reverse;
     private boolean[][] passiveTileCoord;
     private boolean[][] activeTileCoord;
-    private int counter;
+    private ArrayList<Integer> fullRows;
+    private HashSet<Integer> rowsAboveFullRows;
+    private ArrayList<Tile> passiveTiles;
+    private int[] fullRowCounter;
+    private HashSet<Integer> tileToBeRemoved;
+    private ArrayList<Tile> newPassiveTiles;
+    private int rowToBeRemoved;
+    private int fullRowsAtSameTime;
+    private Score score;
+    private GameSpeed speed;
+    private int gameSpeed;
     
     //pääkonstruktori
     public TetrisGame() {
-        this.passiveShapes = new ArrayList<>();
         this.activeShape = createRandomShape();
         this.activeShapeTiles = activeShape.getTiles();
         this.centerX = activeShapeTiles[0].getX();
@@ -39,11 +47,18 @@ public class TetrisGame {
         this.newCoordinates = new Tile[]{new Tile(0, 0), new Tile(0, 0), new Tile(0, 0), new Tile(0, 0)};
         this.passiveTileCoord = new boolean[boardWidth][boardHeight];
         this.activeTileCoord = new boolean[boardWidth][boardHeight];
+        this.fullRows = new ArrayList<>();
+        this.rowsAboveFullRows = new HashSet<>();
+        this.passiveTiles = new ArrayList<>();
+        this.fullRowCounter = new int[boardHeight];
+        this.tileToBeRemoved = new HashSet<>();
+        this.newPassiveTiles = new ArrayList<>();
+        this.score = new Score();
+        this.speed = new GameSpeed();
     }
     
     //testusta varten tietyllä palikalla alkava konstruktori
     public TetrisGame(int value) {
-        this.passiveShapes = new ArrayList<>();
         this.activeShape = createRandomShape(value);
         this.activeShapeTiles = activeShape.getTiles();
         this.centerX = activeShapeTiles[0].getX();
@@ -52,14 +67,27 @@ public class TetrisGame {
         this.newCoordinates = new Tile[]{new Tile(0, 0), new Tile(0, 0), new Tile(0, 0), new Tile(0, 0)};
         this.passiveTileCoord = new boolean[boardWidth][boardHeight];
         this.activeTileCoord = new boolean[boardWidth][boardHeight];
+        this.fullRows = new ArrayList<>();
+        this.rowsAboveFullRows = new HashSet<>();
+        this.passiveTiles = new ArrayList<>();
+        this.fullRowCounter = new int[boardHeight];
+        this.tileToBeRemoved = new HashSet<>();
+        this.newPassiveTiles = new ArrayList<>();
     }
     
     // apumetodeja GameView:lle
+    public boolean gameOver() {
+        for (Tile activeShapeTile : activeShapeTiles) {
+            for (Tile passiveTile : passiveTiles) {
+                if (activeShapeTile.getY() < 2 && activeShapeTile.getX() == passiveTile.getX() && activeShapeTile.getY() == passiveTile.getY() - 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public void setActiveShape(Shape activeShape) {
         this.activeShape = activeShape;
-    }
-    public boolean[][] getPassiveTileCoord() {
-        return passiveTileCoord;
     }
     public boolean[][] getActiveShapeCoord() {
         for (Tile activeTile : activeShapeTiles) {
@@ -74,23 +102,19 @@ public class TetrisGame {
             }
         }
     }
-    public boolean gameOver() {
-        for (Tile activeShapeTile : activeShapeTiles) {
-            for (Tile[] tiles : passiveShapes) {
-                for (Tile tile : tiles) {
-                    if (activeShapeTile.getY() < 2 && activeShapeTile.getX() == tile.getX() && activeShapeTile.getY() == tile.getY() - 1) {
-                        return true;
-                    }
-                }
-            }
+    public boolean[][] getPassiveTileCoord() {
+        for (Tile passiveTile : passiveTiles) {
+            passiveTileCoord[passiveTile.getX()][passiveTile.getY()] = true;
         }
-        return false;
+        return passiveTileCoord;
+    }
+    public void resetPassiveTileCoord() {
+        for (Tile passiveTile : passiveTiles) {
+            passiveTileCoord[passiveTile.getX()][passiveTile.getY()] = false;
+        }
     }
     
-    // apumetodeja omalle luokalle ja testiluokalle
-    public ArrayList<Tile[]> getPassiveShapes() {
-        return passiveShapes;
-    }
+    // apumetodeja testiluokalle
     public Tile[] getActiveShapeTiles() {
         return activeShapeTiles;
     }
@@ -136,11 +160,24 @@ public class TetrisGame {
             }
         } else {
             for (Tile activeShapeTile : activeShapeTiles) {
-                passiveShapes.add(activeShapeTiles);
+                passiveTiles.add(activeShapeTile);
             }
             activeShape = createRandomShape();
             activeShapeTiles = activeShape.getTiles();
         }
+    }
+    
+    public void hardDrop() {
+        while(passivesOnTheWay("down") && edgeOnTheWay("down")) {
+            for (Tile activeShapeTile : activeShapeTiles) {
+                activeShapeTile.setY(activeShapeTile.getY() + 1);
+            }
+        }
+        for (Tile activeShapeTile : activeShapeTiles) {
+            passiveTiles.add(activeShapeTile);
+        }
+        activeShape = createRandomShape();
+        activeShapeTiles = activeShape.getTiles();
     }
     
     // liikutetaan aktiivista palikkaa vasempaan
@@ -179,7 +216,6 @@ public class TetrisGame {
             if (activeShapeTile.getX() == edge) {
                 return false;
             }
-            
         }
         return true;
     }
@@ -187,21 +223,19 @@ public class TetrisGame {
     // onko passiivinen palikka aktiivisen tiellä
     private boolean passivesOnTheWay(String direction) {
         for (Tile activeShapeTile : activeShapeTiles) {
-            for (Tile[] passiveTiles : passiveShapes) {
-                for (Tile tile : passiveTiles) {
-                    if (direction.equals("right")) {
-                        passiveTileDirectionX = tile.getX() - 1;
-                        passiveTileDirectionY = tile.getY();
-                    } else if (direction.equals("left")) {
-                        passiveTileDirectionX = tile.getX() + 1;
-                        passiveTileDirectionY = tile.getY();
-                    } else if (direction.equals("down")) {
-                        passiveTileDirectionX = tile.getX();
-                        passiveTileDirectionY = tile.getY() - 1;
-                    }
-                    if (activeShapeTile.getX() == passiveTileDirectionX && activeShapeTile.getY() == passiveTileDirectionY) {
-                        return false;
-                    }
+            for (Tile passiveTile : passiveTiles) {
+                if (direction.equals("right")) {
+                    passiveTileDirectionX = passiveTile.getX() - 1;
+                    passiveTileDirectionY = passiveTile.getY();
+                } else if (direction.equals("left")) {
+                    passiveTileDirectionX = passiveTile.getX() + 1;
+                    passiveTileDirectionY = passiveTile.getY();
+                } else if (direction.equals("down")) {
+                    passiveTileDirectionX = passiveTile.getX();
+                    passiveTileDirectionY = passiveTile.getY() - 1;
+                }
+                if (activeShapeTile.getX() == passiveTileDirectionX && activeShapeTile.getY() == passiveTileDirectionY) {
+                    return false;
                 }
             }
         }
@@ -264,7 +298,7 @@ public class TetrisGame {
     // "I"-palikan erikoispalikka, joka on keskipalikan sivulla kahden päässä
     private String getTileType(Tile t) {
         if ((t.getX() == centerX && (t.getY() == centerY + 1 || t.getY() == centerY - 1) ||
-                (t.getX() == centerX + 1 || t.getX() == centerX - 1) && t.getY() == centerY)) {
+            (t.getX() == centerX + 1 || t.getX() == centerX - 1) && t.getY() == centerY)) {
             return "Side";
         } else if (shapeType.equals("I")) {
             return "DoubleSide";
@@ -348,43 +382,117 @@ public class TetrisGame {
                 return false;
             }
             // onko passiivinen palikka uuden sijainnin tiellä
-            for (Tile[] passiveTiles : passiveShapes) {
-                for (Tile passiveTile : passiveTiles) {
-                    if (passiveTile.getX() == newCoordinates[i].getX() && passiveTile.getY() == newCoordinates[i].getY()) {
-                        return false;
-                    }
+            for (Tile passiveTile : passiveTiles) {
+                if (passiveTile.getX() == newCoordinates[i].getX() && passiveTile.getY() == newCoordinates[i].getY()) {
+                    return false;
                 }
             }
         }
         return true;
     }
     
-    // näyttää tekstikäyttöliittymässä tietoa passiivisten tiilien sijainnista
-    // tarkistaa jokaisella aktiivisen palikan putoamisella
-    // löytyykö täysiä rivejä passiivisten tiilien joukosta
-    // löytyessä tulostaa täyden rivin viereen "rivi täynnä!" -tekstin
-    public void checkForFullRows() {
-        for (Tile[] passiveTiles : passiveShapes) {
-            for (Tile passiveTile : passiveTiles) {
-                passiveTileCoord[passiveTile.getX()][passiveTile.getY()] = true;
+    public boolean checkForFullRows() {
+        for (int j = 0; j < boardHeight; j++) {
+            fullRowCounter[j] = 0;
+        }
+        for (Tile passiveTile : passiveTiles) {
+            fullRowCounter[passiveTile.getY()] ++;
+        }
+        for (int j = 0; j < boardHeight; j++) {
+            if (fullRowCounter[j] == 10) {
+                fullRows.add(j);
             }
         }
-        for (int i = 0; i < boardHeight; i++) {
-            counter = 0;
-            for (int j = 0; j < boardWidth; j++) {
-                if (passiveTileCoord[j][i]) {
-                    System.out.print("X ");
-                    counter++;
-                } else {
-                    System.out.print("O ");
-                }
-                if (counter == 10) {
-                    System.out.print("rivi täynnä!");
-                }
-            }
-            System.out.println("");
+        if (!fullRows.isEmpty()) {
+            fullRowsAtSameTime = fullRows.size();
+            return true;
         }
-        System.out.println("");
-        System.out.println("");
+        return false;
+    }
+    
+    public int deleteRows() {
+        while (!fullRows.isEmpty()) {
+            rowToBeRemoved = fullRows.get(0);
+            fullRows.remove(0);
+            getFullRowTiles();
+            getRowsAboveFullRows();
+            deleteFullRows();
+            dropRowsAboveFullRows();
+            fullRows.clear();
+        }
+        score.setLinesCleared(score.getLinesCleared() + fullRowsAtSameTime);
+        return score.getLinesCleared();
+    }
+    
+    public void getFullRowTiles() {
+        for (int i = 0; i < passiveTiles.size(); i++) {
+            if (passiveTiles.get(i).getY() == rowToBeRemoved) {
+                tileToBeRemoved.add(i);
+            }
+        }
+    }
+    
+    public void getRowsAboveFullRows() {
+        for (Tile passiveTile : passiveTiles) {
+            if (passiveTile.getY() < rowToBeRemoved) {
+                rowsAboveFullRows.add(passiveTile.getY());
+            }
+        }
+    }
+    
+    public void deleteFullRows() {
+        for (int i = 0; i < passiveTiles.size(); i++) {
+            if (!tileToBeRemoved.contains(i)) {
+                newPassiveTiles.add(passiveTiles.get(i));
+            }
+        }
+        passiveTiles.clear();
+        for (Tile newPassiveTile : newPassiveTiles) {
+            passiveTiles.add(newPassiveTile);
+        }
+        tileToBeRemoved.clear();
+        newPassiveTiles.clear();
+    }
+    
+    public void dropRowsAboveFullRows() {
+        for (int i = 0; i < passiveTiles.size(); i++) {
+            if (rowsAboveFullRows.contains(passiveTiles.get(i).getY()) && passivesOnTheWay("down") && edgeOnTheWay("down")) {
+                passiveTiles.get(i).setY(passiveTiles.get(i).getY() + 1);
+            }
+        }
+        rowsAboveFullRows.clear();
+    }
+    
+    public int addPoints() {
+        switch(fullRowsAtSameTime) {
+            case 1:
+                score.setPoints(score.getPoints() + (40 * (score.getLevel() + 1)));
+                break;
+            case 2:
+                score.setPoints(score.getPoints() + (100 * (score.getLevel() + 1)));
+                break;
+            case 3:
+                score.setPoints(score.getPoints() + (300 * (score.getLevel() + 1)));
+                break;
+            case 4:
+                score.setPoints(score.getPoints() + (1200 * (score.getLevel() + 1)));
+                break;
+        }
+        return score.getPoints();
+    }
+    
+    public int levelUp() {
+        if (score.getLinesCleared() >= (score.getLevel() + 1) * 10 && score.getLevel() <= score.getMaxLevel()) {
+            score.setLevel(score.getLevel() + 1);
+        }
+        if (score.getLevel() == 10) {
+            score.setMaxLevelReached(true);
+        }
+        return score.getLevel();
+    }
+    
+    public int gameSpeed() {
+        speed.setGameSpeed(score.getLevel());
+        return speed.getSpeed();
     }
 }

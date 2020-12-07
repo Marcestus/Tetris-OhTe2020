@@ -20,13 +20,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
-import tetris.domain.Tile;
+import tetris.domain.GameSpeed;
 
 public class GameView extends Application {
     
-    static final int TILE_SIZE = 40;
-    static final int GAME_SPEED = 600;
+    static final int tileSize = 40;
+    //private int gameSpeed = 600;
     private int boardWidth;
     private int boardHeight;
     private TetrisGame game;
@@ -34,10 +35,14 @@ public class GameView extends Application {
     private Scene scene;
     private boolean[][] activeShapeLocation;
     private boolean[][] passiveShapesLocation;
-    private Label instructionsText;
-    private Label gameStatusText;
-    private HBox gameArea;
+    private HBox gameScene;
     private VBox infoScreen;
+    private String gameStatusText;
+    private int currentLinesCleared;
+    private int currentPoints;
+    private int currentLevel;
+    private boolean gameOver;
+    private int currentGameSpeed;
     
     public static void main(String[] args) {
         launch(args);
@@ -55,29 +60,25 @@ public class GameView extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         tetrisGrid = new GridPane();
-        tetrisGrid.setPrefSize(boardWidth * TILE_SIZE, boardHeight * TILE_SIZE);
+        tetrisGrid.setPrefSize(boardWidth * tileSize, boardHeight * tileSize);
         tetrisGrid.setAlignment(Pos.CENTER);
         tetrisGrid.setVgap(3);
         tetrisGrid.setHgap(3);
         tetrisGrid.setPadding(new Insets(3, 3, 3, 3));
         
-        instructionsText = new Label("Liikuta palikkaa nuolinäppäimillä:"
-                + "\n" + "LEFT - palikka liikkuu vasempaan"
-                + "\n" + "RIGHT - palikka liikkuu oikealle"
-                + "\n" + "UP - palikka kääntyy");
-        
         infoScreen = new VBox();
-        infoScreen.setAlignment(Pos.CENTER);
+        infoScreen.setAlignment(Pos.CENTER_LEFT);
         infoScreen.setSpacing(25);
         
-        gameArea = new HBox();
-        gameArea.setPrefSize(boardWidth * TILE_SIZE + 350, boardHeight * TILE_SIZE + 50);
-        gameArea.setAlignment(Pos.CENTER);
-        gameArea.setSpacing(25);
+        gameScene = new HBox();
+        gameScene.setPrefSize(boardWidth * tileSize + 350, boardHeight * tileSize + 50);
+        gameScene.setAlignment(Pos.CENTER);
+        gameScene.setSpacing(25);
         
-        scene = new Scene(gameArea);
+        scene = new Scene(gameScene);
         
-        drawGameState();
+        currentGameSpeed = game.gameSpeed();
+        refreshGameScene();
         createGravity();
         createControls();
         
@@ -93,15 +94,25 @@ public class GameView extends Application {
     
     private void createGravity() {
         SequentialTransition shapeMove = new SequentialTransition();
-        PauseTransition shapePause = new PauseTransition(Duration.millis(GAME_SPEED));
+        PauseTransition shapePause = new PauseTransition(Duration.millis(currentGameSpeed));
         shapePause.setOnFinished(event -> {
             if (game.gameOver()) {
+                gameOver = true;
+                gameStatusText = "Game over!";
                 shapeMove.stop();
-                drawGameState();
+                refreshGameScene();
+            } else {
+                gameOver = false;
+                gameStatusText = "Game on!";
+                game.moveDown();
+                if (game.checkForFullRows()) {
+                    currentLinesCleared = game.deleteRows();
+                    currentPoints = game.addPoints();
+                    currentLevel = game.levelUp();
+                    currentGameSpeed = game.gameSpeed();
+                }
+                refreshGameScene();
             }
-            game.moveDown();
-            game.checkForFullRows();
-            drawGameState();
         });
         shapeMove.getChildren().add(shapePause);
         shapeMove.setCycleCount(Timeline.INDEFINITE);
@@ -114,52 +125,97 @@ public class GameView extends Application {
                 game.moveLeft();
             } else if (key.getCode().equals(KeyCode.RIGHT)) {
                 game.moveRight();
-            }
-            else if (key.getCode().equals(KeyCode.UP)) {
+            } else if (key.getCode().equals(KeyCode.UP)) {
                 game.rotate();
+            } else if (key.getCode().equals(KeyCode.DOWN)) {
+                game.hardDrop();
             }
-            drawGameState();
+            refreshGameScene();
         });
     }
     
-    private void drawGameState() {
-        // nollataan pelialue
+    private void refreshGameScene() {
         infoScreen.getChildren().clear();
-        gameArea.getChildren().clear();
+        gameScene.getChildren().clear();
         tetrisGrid.getChildren().clear();
-        // nollataan aktiivisen palikan koordinaatit
+        refreshTetrisGrid();
+        refreshInfoScreen();
+        gameScene.getChildren().addAll(tetrisGrid, infoScreen);
+    }
+    
+    private void refreshTetrisGrid() {
         game.resetActiveShapeCoord();
-        // lisätään aktiivisen palikan koordinaatit listaan
         activeShapeLocation = game.getActiveShapeCoord();
-        // lisätään passiivisten palikoiden koordinaatit listaan
-        passiveShapesLocation = game.getPassiveTileCoord();
-        // väritetään neliöt edellä luotujen listojen mukaan
-        colorTiles();
-        // pidetään yllä gameStatus-tekstiä
-        if (game.gameOver()) {
-            gameStatusText = new Label("Game status:" + "\n" + "Game over!");
-        } else {
-            gameStatusText = new Label("Game status:" + "\n" + "Game on!");
+        game.resetPassiveTileCoord();
+        for (int x = 0; x < boardWidth; x++) {
+            for (int y = 2; y < boardHeight; y++) {
+                passiveShapesLocation[x][y] = false;
+            }
         }
-        // lisätään kaikki komponentit pelinäkymään
-        infoScreen.getChildren().addAll(instructionsText, gameStatusText);
-        gameArea.getChildren().addAll(tetrisGrid, infoScreen);
+        passiveShapesLocation = game.getPassiveTileCoord();
+        colorTiles();
     }
     
     private void colorTiles() {
-        // väritetään neliöt edellä luotujen listojen mukaan
         for (int x = 0; x < boardWidth; x++) {
             for (int y = 2; y < boardHeight; y++) {
-                Rectangle rect = new Rectangle(TILE_SIZE, TILE_SIZE);
+                Rectangle rect = new Rectangle(tileSize, tileSize);
                 if (activeShapeLocation[x][y]) {
                     rect.setFill(Color.GREEN);
                 } else if (passiveShapesLocation[x][y]) {
-                    rect.setFill(Color.LIGHTGREEN);
+                    rect.setFill(Color.ORANGE);
                 } else {
                     rect.setFill(Color.LIGHTGRAY);
                 }
                 tetrisGrid.add(rect, x, y);
             }
         }
+    }
+    
+    private void refreshInfoScreen() {
+        Label logo = new Label("T E T R I S");
+        logo.setFont(Font.font("Arial", 24));
+        
+        Label instructionsText = new Label("Joka kymmenes poistettu rivi"
+                + "\n" + "kasvattaa pelinopeutta"
+                + "\n"
+                + "\n" + "Liikuta palikkaa nuolinäppäimillä:"
+                + "\n"
+                + "\n" + "LEFT - palikka liikkuu vasempaan"
+                + "\n" + "RIGHT - palikka liikkuu oikealle"
+                + "\n" + "UP - palikka kääntyy"
+                + "\n" + "DOWN - hard drop"
+                + "\n" + "  eli palikka putoaa kohtisuoraan"
+                + "\n" + "  alas paikoilleen");
+        
+        Label gameStatus = new Label("Game status: " + gameStatusText);
+        
+        VBox currentScore = new VBox();
+        currentScore.setSpacing(10);
+        Label lines = new Label("Lines: " + currentLinesCleared);
+        Label points = new Label("Points: " + currentPoints);
+        Label level = new Label("Level: " + currentLevel + " / 10");
+        currentScore.getChildren().addAll(lines, points, level);
+        
+        Label ending = new Label();
+        if (gameOver && currentPoints > 0) {
+            ending = new Label("Onneksi olkoon,"
+                + "\n" + "sait " + currentPoints + " pistettä!"
+                + "\n"
+                + "\n" + "Pelin leaderboardin" 
+                + "\n" + "luonti on vielä kesken,"
+                + "\n" + "joten pisteitä ei voi"
+                + "\n" + "ikävä kyllä vertailla...");
+        } else if (gameOver) {
+            ending = new Label("Harmin paikka,"
+                + "\n" + "et saanut yhtään pisteitä!"
+                + "\n"
+                + "\n" + "Pelin leaderboardin" 
+                + "\n" + "luonti on vielä kesken,"
+                + "\n" + "joten pisteitä ei voi"
+                + "\n" + "vielä vertailla...");
+        }
+        
+        infoScreen.getChildren().addAll(logo, instructionsText, gameStatus, currentScore, ending);
     }
 }
