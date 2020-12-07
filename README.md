@@ -18,7 +18,7 @@ Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän rivej
 
 [Viikko 5](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/viikko5)
 
-**Huom! Releasen jälkeen toiminnallisuuksia on jo ladattu GitHubiin**
+**Huom! Releasen jälkeen toiminnallisuuksia on jo ladattu GitHubiin (7.12.)**
 
 ## Komentorivitoiminnot
 
