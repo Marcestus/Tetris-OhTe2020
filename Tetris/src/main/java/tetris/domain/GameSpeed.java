@@ -1,5 +1,12 @@
 package tetris.domain;
 
+/**
+ * Pelinopeutta kuvaava luokka.
+ * Pelin nopeus määrää, miten nopeasti aktiivinen Tetris-palikka
+ * putoaa alaspäin.
+ * Pelin vaikeustaso vaikuttaa pelin nopeuteen kasvattaen sitä.
+ */
+
 public class GameSpeed {
     
     private int speed;
@@ -8,8 +15,19 @@ public class GameSpeed {
         this.speed = 800;
     }
     
+    public int getSpeed() {
+        return speed;
+    }
+    
+    /**
+     * Pelinopeuden määrittäminen vaikeustason mukaan.
+     * 
+     * @param level vaikeustaso, jonka mukaan pelinopeus määritetään
+     * 
+     * @return valittu pelinopeus
+     */    
     public int setGameSpeed(int level) {
-        switch(level) {
+        switch (level) {
             case 0:
                 speed = 800;
                 break;
@@ -46,9 +64,4 @@ public class GameSpeed {
         }
         return speed;
     }
-
-    public int getSpeed() {
-        return speed;
-    }
-
 }

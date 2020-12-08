@@ -1,5 +1,5 @@
 /**
- * Sovelluslogiikka 
+ * Sovelluslogiikka.
  */
 
 package tetris.domain;

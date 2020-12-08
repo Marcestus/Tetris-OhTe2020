@@ -1,5 +1,5 @@
 /**
- * Tietojen pysyväistallennus 
+ * Tietojen pysyväistallennus.
  */
 
 package tetris.dao;

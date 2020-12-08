@@ -1,8 +1,5 @@
 package tetris.ui;
 
-//Huom! Tämä ei ole varsinainen Main-tiedosto, vaan tetris.main.Main
-//(jotta jar, maven ja javaFX toimivat yhteen)
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import tetris.domain.TetrisGame;
@@ -22,8 +19,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+/**
+ * Graafisen käyttöliittymän luova luokka.
+ */
+
 public class GameView extends Application {
-    
     static final int tileSize = 40;
     private int boardWidth;
     private int boardHeight;
@@ -48,8 +48,8 @@ public class GameView extends Application {
     @Override
     public void init() {
         game = new TetrisGame();
-        boardWidth = game.boardWidth;
-        boardHeight = game.boardHeight;
+        boardWidth = game.getBoardWidth();
+        boardHeight = game.getBoardHeight();
         activeShapeLocation = new boolean[boardWidth][boardHeight];
         passiveShapesLocation = new boolean[boardWidth][boardHeight];
     }
@@ -103,7 +103,7 @@ public class GameView extends Application {
                 gameStatusText = "Game on!";
                 game.moveDown();
                 if (game.checkForFullRows()) {
-                    currentLinesCleared = game.deleteRows();
+                    currentLinesCleared = game.deleteRowsAndDropRowsAboveFullRows();
                     currentPoints = game.addPoints();
                     currentLevel = game.levelUp();
                     currentGameSpeed = game.gameSpeed();

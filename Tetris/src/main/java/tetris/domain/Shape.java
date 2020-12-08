@@ -1,6 +1,15 @@
 package tetris.domain;
 
-//tetris-palikoiden muodostamista varten
+/**
+ * Yksittäistä Tetris-palikkaa kuvaava luokka.
+ * Palikka koostuu neljästä tiilestä,
+ * joista keskimmäinen on luotaessa aina sama.
+ * Tyypistä riippuen palikan kolme muuta tiiltä luodaan
+ * eri puolille keskipalikkaa.
+ * Palikalla on tyypistä riippuen eri määrä kääntötiloja (orientation),
+ * joiden tilaa pidetään muistissa tässä luokassa.
+ * Kääntötila vaikuttaa nimensä mukaisesti palikan kääntymiseen.
+ */
 
 public class Shape {
     
@@ -17,89 +26,93 @@ public class Shape {
         createShape(type);
     }
     
-    //loput metodit apuna palikoiden luomisessa
+    public Tile[] getTiles() {
+        return tiles;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    
+    public int getOrientation() {
+        return orientation;
+    }
+    
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
+    }
+    
+    /**
+     * Ohjaa valitsemaan oikeat koordinaatit uutta Tetris-palikkaa luotaessa.
+     * Koordinaatit vaihtelevat palikan tyypin mukaan.
+     * 
+     * @param type luotavan Tetris-palikan tyyppi
+     */
     private void createShape(String type) {
         switch (type) {
             case "L":
-                createL();
+                getCoordL();
                 break;
             case "J":
-                createJ();
+                getCoordJ();
                 break;
             case "S":
-                createS();
+                getCoordS();
                 break;
             case "Z":
-                createZ();
+                getCoordZ();
                 break;
             case "O":
-                createO();
+                getCoordO();
                 break;
             case "I":
-                createI();
+                getCoordI();
                 break;
             case "T":
-                createT();
+                getCoordT();
                 break;
         }
     }
     
-    private void createL() {
+    private void getCoordL() {
         this.tiles[1] = new Tile(centerTile.getX() + 1, centerTile.getY() - 1);
         this.tiles[2] = new Tile(centerTile.getX() - 1, centerTile.getY());
         this.tiles[3] = new Tile(centerTile.getX() + 1, centerTile.getY());
     }
     
-    private void createJ() {
+    private void getCoordJ() {
         this.tiles[1] = new Tile(centerTile.getX() - 1, centerTile.getY() - 1);
         this.tiles[2] = new Tile(centerTile.getX() - 1, centerTile.getY());
         this.tiles[3] = new Tile(centerTile.getX() + 1, centerTile.getY());
     }
     
-    private void createS() {
+    private void getCoordS() {
         this.tiles[1] = new Tile(centerTile.getX() + 1, centerTile.getY() - 1);
         this.tiles[2] = new Tile(centerTile.getX(), centerTile.getY() - 1);
         this.tiles[3] = new Tile(centerTile.getX() - 1, centerTile.getY());
     }
     
-    private void createZ() {
+    private void getCoordZ() {
         this.tiles[1] = new Tile(centerTile.getX() - 1, centerTile.getY() - 1);
         this.tiles[2] = new Tile(centerTile.getX(), centerTile.getY() - 1);
         this.tiles[3] = new Tile(centerTile.getX() + 1, centerTile.getY());
     }
     
-    private void createO() {
+    private void getCoordO() {
         this.tiles[1] = new Tile(centerTile.getX() - 1, centerTile.getY() - 1);
         this.tiles[2] = new Tile(centerTile.getX(), centerTile.getY() - 1);
         this.tiles[3] = new Tile(centerTile.getX() - 1, centerTile.getY());
     }
     
-    private void createI() {
+    private void getCoordI() {
         this.tiles[1] = new Tile(centerTile.getX() - 2, centerTile.getY());
         this.tiles[2] = new Tile(centerTile.getX() - 1, centerTile.getY());
         this.tiles[3] = new Tile(centerTile.getX() + 1, centerTile.getY());
     }
     
-    private void createT() {
+    private void getCoordT() {
         this.tiles[1] = new Tile(centerTile.getX(), centerTile.getY() - 1);
         this.tiles[2] = new Tile(centerTile.getX() - 1, centerTile.getY());
         this.tiles[3] = new Tile(centerTile.getX() + 1, centerTile.getY());
-    }
-    
-    
-    public Tile[] getTiles() {
-        return tiles;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(int orientation) {
-        this.orientation = orientation;
     }
 }
