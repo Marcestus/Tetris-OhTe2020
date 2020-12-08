@@ -29,7 +29,14 @@
 | 2.12.  | 1    | sovelluksen toimivuuden varmistaminen, testien viimeistely |
 |        | 1    | release, sovelluksen toimivuuden varmistaminen eri alustoilla (.jar, etäyhteys yms.) |
 |        | 1    | dokumentaatio: sekvenssikaavio ja arkkitehtuurikuvaus, README.md linkit |
-| yht    | 51   | |
+| 5.12.  | 4    | perustoiminnallisuuksien koodaamista: täysien rivien poistuminen |
+|        | 3    | perustoiminnallisuuksien koodaamista: pisteiden kasvaminen, pelinopeuden kasvaminen, "Hard drop" |
+| 7.12.  | 1    | koodin parantelua, toimivuuden testausta |
+| 7.12.  | 3    | dokumentointi: javadoc
+|        | 1    | checkstyle, koodin parantelua
+| 8.12.  | 5    | testit, javadoc, koodin parantelu
+|        | 2    | dokumentointi: arkkitehtuuri
+| yht    | 70   | |
 
 
 vko 2 yht. 4 tuntia
@@ -40,5 +47,7 @@ vko 4 yht. 12 tuntia
 
 vko 5 yht. 14 tuntia
 
-**koko kurssi yhteensä 51 tuntia**
+vko 6 yht. 19 tuntia
+
+**koko kurssi yhteensä 70 tuntia**
 
