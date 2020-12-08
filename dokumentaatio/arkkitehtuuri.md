@@ -24,10 +24,26 @@ Pelilogiikan perusluokkia hyödynnetään sovelluksen logiikasta vastaavassa Tet
 
 Seuraavat sekvenssikaaviot kuvastavat sovelluksen päätoiminnallisuuksia.
 
-**Palikan liikkuminen alaspäin estyy, luodaan uusi palikka**
+**Palikan liikkuminen alaspäin**
 
-Aktiivinen palikka liikkuu tietyn ajan kuluessa yhden peliruudun verran alaspäin, mikäli se ei törmää pelialueen alareunaan tai passiivisiin palikoihin. Kuvatussa tilanteessa palikka ei pääse liikkumaan enää alaspäin.
+Aktiivinen palikka liikkuu tietyn ajan kuluessa yhden peliruudun verran alaspäin, mikäli se ei törmää pelialueen alareunaan tai passiivisiin palikoihin. Alla on kuvattuna molemmat tilanteet.
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/moveDown().png">
+<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/moveDown.png">
 
-Kun GameView antaa käskyn palikan liikuttamiseksi alaspäin, pelilogiikkaa ylläpitävä TetrisGame siis selvittää ensin, pääseekö palikka liikkumaan. Koska se ei pääse, aktiivisen palikan sijainti siirretään passiivisten palikoiden listaan ja pyydetään uutta palikkaa. Shape ja Tile luovat uuden palikan ja palauttavat sen TetrisGame:lle. Kun metodi päättyy, GameView jatkaa seuraavaan ajoitettuun tehtäväänsä.
+**Palikan liikkuminen vasemmalle ja oikealle**
+
+Aktiivinen palikka liikkuu pelaajan käskystä vasemmalle ja oikealle, mikäli se ei törmää passiivisiin tiiliin tai pelialueen reunoihin.
+
+<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rightAndLeft.png">
+
+**Palikan kääntyminen ja putoaminen alaspäin ("Hard drop")**
+
+Aktiivinen palikka kääntyy pelaajan käskystä sekä putoaa alaspäin, kunnes se osuu passiiviseen tiileen tai pelialueen alareunaan.
+
+<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rotateAndHardDrop.png">
+
+**Täysien vaakasuorien rivien poistuminen ja pisteiden päivittyminen**
+
+Kun passiiviset tiilet muodostavat kokonaisen täyden rivin, se poistuu ja sen yläpuolella olevat passiiviset tiilet tippuvat alaspäin poistuneen rivin paikalle. Samalla pisteet päivittyvät.
+
+<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/FullRowsSequence.png">
