@@ -2,15 +2,23 @@
 
 ## Pakkausrakenne
 
-Ohjelman rakenne noudattaa kolmitasoista kerrosarkkitehtuuria: ui käsittelee käyttöliittymän, domain sovelluslogiikan ja dao tietojen pysyväistalletuksen.
+Ohjelman rakenne noudattaa kolmitasoista kerrosarkkitehtuuria, jossa tetris.ui käsittelee käyttöliittymän, tetris.domain sovelluslogiikan ja tetris.dao tietojen pysyväistalletuksen.
 
 <img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/pakkausrakenne.png">
 
+## Käyttöliittymä
+
+Sovelluksen käyttöliittymä sisältää tällä hetkellä vain varsinaisen pelinäkymän. Pelinäkymä on rakennettu luokassa [tetris.ui.GameView](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/ui/GameView.java).
+
+Käyttöliittymä on pyritty eriyttämään täysin sovelluslogiikasta niin, että käyttöliittymä kutsuu vain sovelluslogiikasta vastaavaa luokkaa [tetris.domain.TetrisGame](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/TetrisGame.java).
+
 ## Sovelluslogiikka
 
-Sovelluksen logiikan perustan luovat luokat Tile ja Shape, jotka kuvaavat pelin palikoita ja niiden rakenneosia, tiiliä.
+Sovelluksen logiikan perustan luovat luokat Tile, Shape, Score ja GameSpeed. Näistä kaksi ensimmäistä kuvaavat Tetris-pelin palikoita ja niiden rakenneosia, tiiliä. Score pitää puolestaan yllä pelin pistetilannetta ja GameSpeed palikoiden putoamisnopeutta. Putoamisnopeus riippuu siitä, kuinka monta täyttä riviä pelaaja on onnistunut tuhoamaan.
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaavio.png">
+<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaaviokuva.jpg">
+
+Pelilogiikan perusluokkia hyödynnetään sovelluksen logiikasta vastaavassa TetrisGame -luokassa. Luokka tarjoaa metodit mm. aktiivisen Tetris-palikan liikuttamiseen, täysien rivien poistamiseen sekä pistetilanteen ja palikoiden putoamisnopeuden päivittämiseen.
 
 ## Päätoiminnallisuudet
 
