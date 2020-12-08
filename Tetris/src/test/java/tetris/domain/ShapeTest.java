@@ -9,10 +9,7 @@ import static org.junit.Assert.*;
 
 public class ShapeTest {
     
-    TetrisGame game;
-    
-    @Before
-    public void setUp() {
+    public ShapeTest() {
         
     }
     
