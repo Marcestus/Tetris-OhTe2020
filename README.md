@@ -8,6 +8,8 @@ Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän rivej
 
 ## Dokumentaatio
 
+[Käyttöohje](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 [Vaatimusmäärittely](https://github.com/marcestus/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Arkkitehtuurikuvaus](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
@@ -17,6 +19,8 @@ Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän rivej
 ## Releaset
 
 [Viikko 5](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/viikko5)
+
+[Viikko 6](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/viikko6)
 
 **Huom! Releasen jälkeen toiminnallisuuksia on jo ladattu GitHubiin (7.12.)**
 
