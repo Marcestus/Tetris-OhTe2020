@@ -21,10 +21,8 @@ public class GameSpeed {
     
     /**
      * Pelinopeuden määrittäminen vaikeustason mukaan.
-     * 
      * @param level vaikeustaso, jonka mukaan pelinopeus määritetään
-     * 
-     * @return valittu pelinopeus
+     * @return pelin vaikeustason mukainen pelinopeus
      */    
     public int setGameSpeed(int level) {
         switch (level) {

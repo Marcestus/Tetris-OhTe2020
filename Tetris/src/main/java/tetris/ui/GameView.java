@@ -2,7 +2,6 @@ package tetris.ui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import tetris.domain.TetrisGame;
 import javafx.animation.SequentialTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -18,9 +17,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import tetris.domain.TetrisGame;
 
 /**
- * Graafisen käyttöliittymän luova luokka.
+ * Graafista käyttöliittymää hallitseva luokka.
  */
 
 public class GameView extends Application {
@@ -75,7 +75,7 @@ public class GameView extends Application {
         scene = new Scene(gameScene);
         
         refreshGameScene();
-        currentGameSpeed = game.gameSpeed();
+        currentGameSpeed = game.getGameSpeed().getSpeed();
         createGravity();
         createControls();
         
@@ -103,10 +103,12 @@ public class GameView extends Application {
                 gameStatusText = "Game on!";
                 game.moveDown();
                 if (game.checkForFullRows()) {
-                    currentLinesCleared = game.deleteRowsAndDropRowsAboveFullRows();
-                    currentPoints = game.addPoints();
-                    currentLevel = game.levelUp();
-                    currentGameSpeed = game.gameSpeed();
+                    game.deleteRowsAndDropRowsAboveFullRows();
+                    game.setScoreAndSpeed();
+                    currentPoints = game.getScore().getPoints();
+                    currentLevel = game.getScore().getLevel();
+                    currentLinesCleared = game.getScore().getLinesCleared();
+                    currentGameSpeed = game.getGameSpeed().getSpeed();
                 }
                 refreshGameScene();
             }

@@ -42,12 +42,6 @@ public class Shape {
         this.orientation = orientation;
     }
     
-    /**
-     * Ohjaa valitsemaan oikeat koordinaatit uutta Tetris-palikkaa luotaessa.
-     * Koordinaatit vaihtelevat palikan tyypin mukaan.
-     * 
-     * @param type luotavan Tetris-palikan tyyppi
-     */
     private void createShape(String type) {
         switch (type) {
             case "L":
