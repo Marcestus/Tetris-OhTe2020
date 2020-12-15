@@ -4,8 +4,6 @@ Sovellus on variaatio suositusta Tetris-pelistä. Pelissä kerätään pisteitä
 
 Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän rivejä saadaan poistettua, sitä nopeampi on palikoiden putoamisnopeus.
 
-**Huom. Ohjelma on vasta osittain valmis. Tällä hetkellä yllä kuvatut perustoiminnallisuudet ovat valmiita, mutta esimerkiksi leaderboard puuttuu.**
-
 ## Dokumentaatio
 
 [Käyttöohje](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
@@ -45,7 +43,5 @@ Komento **mvn compile exec:java -Dexec.mainClass=tetris.main.Main** suorittaa oh
 Tiedostoon checkstyle.xml määritellyt tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle** ja mahdollisia virheilmoituksia voi tarkastella avamaalla tiedoston '*target/site/checstyle.html'* selaimeen
 
 ### JavaDoc 
-
-**Huom. Tätä ei ole vielä aloitettu**
 
 JavaDoc generoidaan komennolla **mvn javadoc:javadoc**, jonka jälkeen tiedoston *'target/site/apidocs/index.html'* voi avata selaimeen
