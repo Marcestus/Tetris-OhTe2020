@@ -120,7 +120,7 @@ public class TetrisGame {
     public Score getScore() {
         return score;
     }
-
+    
     public GameSpeed getGameSpeed() {
         return gameSpeed;
     }

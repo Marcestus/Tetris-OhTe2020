@@ -14,6 +14,7 @@ public class Score {
     private int linesCleared;
     private int maxLevel;
     private boolean maxLevelReached;
+    private String player;
     
     public Score() {
         this.points = 0;
