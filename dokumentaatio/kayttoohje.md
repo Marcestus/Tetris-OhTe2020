@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [Tetris.jar](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/viikko6)
+Lataa tiedosto [Tetris.jar](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Konfigurointi: palikoiden putoamisnopeuden ja tietokantojen nimien vaihtaminen
 
