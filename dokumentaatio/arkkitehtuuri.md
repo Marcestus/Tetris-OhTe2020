@@ -79,6 +79,10 @@ ArrayList<HighScore> removeScoreFromDatabase()
 ArrayList<HighScore> getLeaderBoardFromDatabase()
 ```
 
+**Ohjelman osien suhdetta kuvaava luokka/pakkauskaavio:**
+
+Puuttuu!
+
 ## Tiedostot
 
 Sovellus tallentaa parhaat viisi pelitulosta tietokantaan.
