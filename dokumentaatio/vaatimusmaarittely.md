@@ -16,13 +16,13 @@ Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
 
 Sovellus koostuu neljästä eri näkymästä
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg">
 
-Sovellus aukeaa alkuvalikkoon, josta voidaan lukea ohjeet ja käynnistää peli. Lisäksi voidaan siirtyä tarkastelemaan leaderboardia.
 
-Pelinäkymässä on itse pelialueen lisäksi highscore, omat pisteet ja poistettujen rivien summa sekä valittu vaikeustaso. Lisäksi löytyy ohjeistus pause-toiminnon aktivoimisesta
+Sovellus aukeaa alkuvalikkoon, josta voidaan lukea ohjeet ja käynnistää peli. Ennen pelin käynnistystä valitaan vaikeustaso liukuvalikosta. Näkymästä voidaan myös siirtyä tarkastelemaan leaderboardia.
 
-Pelin päättyessä pelaajan pisteistä riippuen pääsee joko syöttämään oman nimimerkin leaderboardiin erillisessä HighScore -näkymässä tai sitten Leaderboard -näkymä aukeaa suoraan.
+Pelinäkymässä on itse pelialueen lisäksi inforuutu, josta näkyy mm. kuluvan pelin pistetilanne ja pelin paras tulos.
+
+Pelin päättyessä pelaajan pisteistä riippuen pääsee joko syöttämään oman nimimerkin leaderboardiin erillisessä HighScore -näkymässä tai sitten Leaderboard -näkymä viiteen parhaaseen tulokseen aukeaa suoraan.
 
 Leaderboard -näkymästä siirrytään takaisin alkuvalikkoon nappia painamalla.
 
