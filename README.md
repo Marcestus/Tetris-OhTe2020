@@ -1,8 +1,10 @@
 # Tetris
 
-Sovellus on variaatio suositusta Tetris-pelistä. Pelissä kerätään pisteitä järjestelemällä palikoita kokonaisiksi vaakasuoriksi riveiksi. Kun kokonainen rivi saadaan muodostettua, rivi poistuu ja yläpuolella olevat rivit putoavat yhden alaspäin. Enemmän pisteitä saa, mikäli saa täytettyä useamman rivin samaan aikaan.
+Sovellus on variaatio suositusta Tetris-pelistä. Pelissä kerätään pisteitä järjestelemällä palikoita kokonaisiksi vaakasuoriksi riveiksi. Kokonaiset rivit poistuvat ja niiden yläpuolella olevat mahdolliset rivit putoavat alaspäin. Enemmän pisteitä saa, mikäli saa täytettyä useamman rivin samaan aikaan.
 
-Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän rivejä saadaan poistettua, sitä nopeampi on palikoiden putoamisnopeus.
+Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Palikoiden putoamisnopeus määräytyy valitun vaikeustason mukaan (easy, moderate, hard).
+
+Viisi parasta pelitulosta pääsevät leaderboardiin.
 
 ## Dokumentaatio
 
@@ -11,6 +13,8 @@ Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän rivej
 [Vaatimusmäärittely](https://github.com/marcestus/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Arkkitehtuurikuvaus](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+[Testausdokumentti](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/testausdokumentti.md)
 
 [Työaikakirjanpito](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 

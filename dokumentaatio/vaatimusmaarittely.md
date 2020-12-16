@@ -2,61 +2,15 @@
 
 ### Sovelluksen tarkoitus
 
-Sovellus on variaatio suositusta *Tetris*-pelistä. Pelissä kerätään pisteitä järjestelemällä palikoita kokonaisiksi vaakasuoriksi riveiksi. Kun kokonainen rivi saadaan muodostettua, rivi poistuu ja yläpuolella olevat rivit putoavat yhden alaspäin. Enemmän pisteitä saa, mikäli saa täytettyä useamman rivin samaan aikaan.
+Sovellus on variaatio suositusta Tetris-pelistä. Pelissä kerätään pisteitä järjestelemällä palikoita kokonaisiksi vaakasuoriksi riveiksi. Kokonaiset rivit poistuvat ja niiden yläpuolella olevat mahdolliset rivit putoavat alaspäin. Enemmän pisteitä saa, mikäli saa täytettyä useamman rivin samaan aikaan.
 
-Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Mitä enemmän pisteitä kertyy, sitä nopeampi on palikoiden putoamisnopeus.
+Palikat putoavat jatkuvasti alaspäin tietyllä nopeudella. Palikoiden putoamisnopeus määräytyy valitun vaikeustason mukaan (easy, moderate, hard).
+
+Viisi parasta pelitulosta pääsevät leaderboardiin.
 
 ### Käyttäjät
 
 Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
-
-### Sovelluksen toiminnallisuudet
-
-#### Alkuvalikko
-
-- Pelaaja näkee pelin logon ja ohjeistuksen
-- Lisätoiminnallisuuksien toteutuessa pelityylin valinnat voidaan tehdä tässä näkymässä
-- Pelaaja aloittaa pelin näppäimistön komennolla
-
-#### Ydintoiminnallisuudet
-
-- Pelissä on seitsemän erimuotoista palikkaa **(tehty vko3)**
-- Palikat ilmestyvät yksitellen satunnaisessa järjestyksessä pelialueen yläreunaan, josta ne alkavat pudota kohtisuoraan alaspäin tietyllä nopeudella **(tehty vko3)**
-  - Palikoiden määrää ei ole rajattu **(tehty vko3)**
-- Pelaaja voi liikuttaa putoavaa palikkaa vasemmalle ja oikealle sekä kääntää sitä myötäpäivään 90 astetta kerrallaan **(liikutus vasemmalle ja oikealle tehty vko4, kääntäminen tehty vko5)**
-  - Palikoita ei voi liikuttaa toisten palikoiden eikä pelialueen reunojen päälle **(tehty vko4)**
-- Kun palikka tippuu pelialueen alareunaan tai osuu toisen palikan (tai sen osan) yläreunaan, palikka jäätyy paikoilleen ja seuraava palikka alkaa pudota pelialueen yläreunasta **(tehty vko4)**
-- Kun pelaaja on saanut muodostettua palikoista kokonaisen vaakasuoran rivin, rivi poistuu **(tehty vko6)**
-  - Kaikki poistuneen rivin yläpuolella olleet rivit siirtyvät samalla yhden rivin alaspäin **(tehty vko6)**
-- Poistuvat rivit kerryttävät pelaajalle pisteitä **(tehty vko6)**
-  - Mitä useamman rivin pelaaja saa poistettua kerralla, sitä enemmän pisteitä kertyy **(tehty vko6)**
-- Mitä enemmän pisteitä kertyy, sitä nopeampi on palikoiden perus-putoamisnopeus **(tehty vko6)**
-- Peli päättyy, kun pelaaja ei saa pidettyä palikoita enää pelialueella, eli kun palikka tai sen osa jää pelialueen yläreunan yläpuolelle **(tehty vko4)**
-
-#### Leaderboard -näkymä
-
-- Kun peli päättyy, pelaaja näkee, riittävätkö hänen pisteensä parhaan viiden pelaajan joukkoon pääsemiseen
-- Mikäli pisteet riittävät, pelaaja pääsee kirjoittamaan nimimerkkinsä leaderboard-listaan (erillinen näkymä)
-- Mikäli pisteet eivät riitä, pelaaja näkee suoraan leaderboardin
-
-#### Lisätoiminnallisuudet
-
-Pelin perustoiminnallisuuksia täydennetään ajan salliessa seuraavasti
-
-- Pelaaja voi itse kiihdyttää palikan putoamista näppäimistön komennolla kahdella eri tavalla
-    1. Palikka putoaa pelaajan komennosta välittömästi kohtisuoraan alaspäin paikoilleen eli kunnes se osuu pelialueen alareunaan tai toisen palikan (tai sen osan) yläreunaan **(tehty vko6)**
-    2. Palikan putoamisnopeus kiihtyy silloin, kun pelaaja pitää komennon antavaa painiketta painettuna
-    - Tavoista voidaan toteuttaa jompikumpi tai molemmat
-    - Mikäli molemmat toteutetaan, pelityylin valinta tapahtuu alkuvalikossa
-    - Pelityyleille voidaan toiminnallisuuden toteutuessa muodostaa omat leaderboardit
-- Pelialueen viereen lisätään ruutu, joka näyttää seuraavan jonossa odottavan palikan etukäteen
-  - Tämän toiminnallisuuden voi valita päälle alkuvalikosta
-  - Pelityyleille voidaan toiminnallisuuden toteutuessa muodostaa omat leaderboardit
-- Palikoiden väri muuttuu sen mukaan, mitä lähempänä pelaaja on highscorea, esimerkiksi:
-  - pisteitä alle 50% parhaasta tuloksesta: värinä punainen
-  - pisteitä 51-75% parhaasta tuloksesta: värinä vaaleanpunainen
-  - pisteitä 76-100% parhaasta tuloksesta: värinä vaaleanvihreä
-  - pisteitä yli 100% parhaasta tuloksesta: värinä vihreä
 
 ### Käyttöliittymäluonnos
 
@@ -64,8 +18,54 @@ Sovellus koostuu neljästä eri näkymästä
 
 <img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg">
 
-Sovellus aukeaa alkuvalikkoon, josta voidaan lukea ohjeet ja käynnistää peli näppäimistökomennolla. Pelinäkymässä on itse pelialueen lisäksi highscore ja omat pisteet sekä mahdollisesti tieto seuraavana jonossa odottavasta palikasta.
+Sovellus aukeaa alkuvalikkoon, josta voidaan lukea ohjeet ja käynnistää peli. Lisäksi voidaan siirtyä tarkastelemaan leaderboardia.
 
-Pelin päättyessä pelaajan pisteistä riippuen pääsee joko syöttämään oman nimimerkin leaderboardiin eri näkymässä tai sitten leaderboard -näkymä aukeaa suoraan.
+Pelinäkymässä on itse pelialueen lisäksi highscore, omat pisteet ja poistettujen rivien summa sekä valittu vaikeustaso. Lisäksi löytyy ohjeistus pause-toiminnon aktivoimisesta
 
-Leaderboard -näkymästä voidaan siirtyä näppäimistökomennoilla joko alkuvalikkoon tai suoraan uuteen peliin.
+Pelin päättyessä pelaajan pisteistä riippuen pääsee joko syöttämään oman nimimerkin leaderboardiin erillisessä HighScore -näkymässä tai sitten Leaderboard -näkymä aukeaa suoraan.
+
+Leaderboard -näkymästä siirrytään takaisin alkuvalikkoon nappia painamalla.
+
+### Sovelluksen toiminnallisuudet
+
+#### Alkuvalikko
+
+- Pelaaja näkee pelin logon ja ohjeistuksen **(tehty vko 7)**
+- Pelaaja valitsee vaikeustason liukuvalikosta (easy, moderate, hard) **(tehty vko 7)**
+- Pelaaja voi aloittaa pelin nappia painamalla (Start game) **(tehty vko 7)**
+- Pelaaja voi siirtyä tarkastelemaan leaderboardia nappia painamalla (Leaderboard) **(tehty vko 7)**
+
+#### Ydintoiminnallisuudet (varsinainen pelinäkymä)
+
+- Pelissä on seitsemän erimuotoista palikkaa **(tehty vko3)**
+- Palikat ilmestyvät yksitellen satunnaisessa järjestyksessä pelialueen yläreunaan, josta ne alkavat pudota kohtisuoraan alaspäin tietyllä nopeudella **(tehty vko3)**
+  - Palikoiden määrää ei ole rajattu **(tehty vko3)**
+- Pelaaja voi liikuttaa putoavaa palikkaa vasemmalle ja oikealle sekä kääntää sitä 90 astetta kerrallaan **(liikutus vasemmalle ja oikealle tehty vko4, kääntäminen tehty vko5)**
+  - Palikoita ei voi liikuttaa toisten palikoiden eikä pelialueen reunojen päälle **(tehty vko4)**
+- Pelaaja voi pudottaa palikan näppämistön komennolla suoraan paikoilleen eli kunnes se osuu pelialueen alareunaan tai toisen palikan (tai sen osan) yläreunaan **(tehty vko6)**
+- Kun palikka tippuu pelialueen alareunaan tai osuu toisen palikan (tai sen osan) yläreunaan, palikka jäätyy paikoilleen ja seuraava palikka alkaa pudota pelialueen yläreunasta **(tehty vko4)**
+- Kun pelaaja on saanut muodostettua palikoista kokonaisen vaakasuoran rivin, rivi poistuu **(tehty vko6)**
+  - Kaikki poistuneen rivin yläpuolella olleet rivit siirtyvät samalla alaspäin **(tehty vko6)**
+- Poistuvat rivit kerryttävät pelaajalle pisteitä **(tehty vko6)**
+  - Mitä useamman rivin pelaaja saa poistettua kerralla, sitä enemmän pisteitä kertyy **(tehty vko6)**
+  - Mitä kovemman vaikeustason pelaaja on valinnut, sitä enemmän pisteitä kertyy **(tehty vko 7)**
+  - Pisteet päivittyvät reaaliajassa pelinäkymän oikeaan reunaan **(tehty vko 7)**
+  - Pelinäkymän oikeassa reunassa on myös pelin highscore eli paras tulos **(tehty vko 7)**
+- Pelaajan on mahdollista pitää tauko pelaamisesta (pause-toiminto) **(tehty vko 7)**
+- Peli päättyy, kun pelaaja ei saa pidettyä palikoita enää pelialueella, eli kun palikka tai sen osa jää pelialueen yläreunan yläpuolelle **(tehty vko4)**
+
+#### Leaderboard- ja HighScore -näkymät
+
+- Kun peli päättyy, pelaaja näkee, riittävätkö hänen pisteensä parhaan viiden pelaajan joukkoon pääsemiseen **(tehty vko 7)**
+- Mikäli pisteet riittävät, pelaaja pääsee kirjoittamaan nimimerkkinsä leaderboard-listaan (HighScore -näkymässä) **(tehty vko 7)**
+- Mikäli pisteet eivät riitä, pelaaja näkee suoraan leaderboardin **(tehty vko 7)**
+
+#### Jatkokehitysideoita
+
+- Palikan putoamisnopeus kiihtyy siksi aikaa, kun pelaaja pitää komennon antavaa painiketta painettuna
+- Pelialueen viereen lisätään ruutu, joka näyttää seuraavan jonossa odottavan palikan etukäteen
+- Palikoiden väri muuttuu sen mukaan, mitä lähempänä pelaaja on highscorea, esimerkiksi:
+  - pisteitä alle 50% parhaasta tuloksesta: värinä punainen
+  - pisteitä 51-75% parhaasta tuloksesta: värinä vaaleanpunainen
+  - pisteitä 76-100% parhaasta tuloksesta: värinä vaaleanvihreä
+  - pisteitä yli 100% parhaasta tuloksesta: värinä vihreä
