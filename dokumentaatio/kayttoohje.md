@@ -53,5 +53,5 @@ Näkymä sisältää viisi parasta pelitulosta. Mikäli kaikki sijat ovat täynn
 
 ![LeaderboardScene](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/LeaderboardScene.png)
 
-Ohjelma tallentaa parhaat tulokset tietokantaan. Leaderboardin voi siis nollata poistamalla tietokannan. Tietokanta löytyy generoimisen jälkeen sovelluskansion [juuresta](https://github.com/Marcestus/ot-harjoitustyo/tree/master/Tetris). Tietokannan oletusnimi on *leaderboard.db* ja sen voi vaihtaa yllä olevilla ohjeilla sovelluksen konfiguraatiotiedostosta. Kun ohjelma käynnistetään poistamisen jälkeen uudestaan, se generoi automaattisesti uuden tyhjän tietokannan samaan paikkaan.
+Ohjelma tallentaa parhaat tulokset tietokantaan. Leaderboardin voi siis nollata poistamalla tietokannan. Tietokanta löytyy generoimisen jälkeen sovelluskansion [juuresta](https://github.com/Marcestus/ot-harjoitustyo/tree/master/Tetris). Tietokannan oletusnimi on *leaderboard.db* ja sen voi vaihtaa yllä olevilla ohjeilla sovelluksen konfigurointitiedostosta. Kun ohjelma käynnistetään poistamisen jälkeen uudestaan, se generoi automaattisesti uuden tyhjän tietokannan samaan paikkaan.
 
