@@ -16,7 +16,7 @@ Pelissä on vain yhdenlaisia käyttäjärooleja, eli pelaajia.
 
 Sovellus koostuu neljästä eri näkymästä
 
-
+<src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg">
 
 Sovellus aukeaa alkuvalikkoon, josta voidaan lukea ohjeet ja käynnistää peli. Ennen pelin käynnistystä valitaan vaikeustaso liukuvalikosta. Näkymästä voidaan myös siirtyä tarkastelemaan leaderboardia.
 
