@@ -31,14 +31,19 @@ Viisi parasta pelitulosta pääsevät leaderboardiin.
 ### Testaus
 
 Sovelluksen testit voidaan suorittaa komennolla **mvn test**
+
 Testikattavuusraportti luodaan puolestaan komennolla **mvn jacoco:report**
+
 Selaimeen avattava raportti löytyy *'target/site/jacoco/index.html'*
 
 ### Suoritettavan jarin generointi
 
 Suoritettava jar-tiedosto generoidaan komennolla **mvn package**
+
 Sovellus generoituu hakemistoon *'target/'*
+
 Sovelluksen voi suorittaa komennolla **java -jar Tetris-1.0-SNAPSHOT.jar**
+
 Generoinnin voi purkaa komennolla **mvn clean**, joka tyhjentää koko *'target/'* -hakemiston
 
 ### Ohjelman suorittaminen komentoriviltä
@@ -48,10 +53,13 @@ Komento **mvn compile exec:java -Dexec.mainClass=tetris.main.Main** suorittaa oh
 ### Checkstyle
 
 Checkstyle -tarkistukset on määritelty sovelluksen juuressa sijaitsevassa *'checkstyle.xml'* -tiedostossa
+
 Tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle**
+
 Selaimeen avattava raportti löytyy *'target/site/checstyle.html'*
 
 ### JavaDoc 
 
 JavaDoc luodaan komenolla **mvn javadoc:javadoc**
+
 Selaimeen avattava JavaDoc -dokumentointi löytyy *'target/site/apidocs/index.html'*
