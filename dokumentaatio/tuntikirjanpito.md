@@ -32,11 +32,15 @@
 | 5.12.  | 4    | perustoiminnallisuuksien koodaamista: täysien rivien poistuminen |
 |        | 3    | perustoiminnallisuuksien koodaamista: pisteiden kasvaminen, pelinopeuden kasvaminen, "Hard drop" |
 | 7.12.  | 1    | koodin parantelua, toimivuuden testausta |
-| 7.12.  | 3    | dokumentointi: javadoc
-|        | 1    | checkstyle, koodin parantelua
-| 8.12.  | 5    | testit, javadoc, koodin parantelu
-|        | 2    | dokumentointi: arkkitehtuuri
-| yht    | 70   | |
+|        | 3    | dokumentointi: javadoc |
+|        | 1    | checkstyle, koodin parantelua |
+| 8.12.  | 5    | testit, javadoc, koodin parantelu |
+|        | 2    | dokumentointi: arkkitehtuuri |
+| 13.12. | 3    | tietokannan (leaderboard) suunnittelu ja koodaaminen, tietokantayhteydet |
+|        | 2    | tietokannan (leaderboard) koodaaminen, tietokantalogiikka |
+| 14.12. | 4    | tietokannan (leaderboard) koodaaminen, tietokantalogiikka |
+|        | 5    | ulkoasun koodaaminen, näkymät (menu, game, leaderboard) ja ui-logiikka |
+| yht    | 84   | |
 
 
 vko 2 yht. 4 tuntia
@@ -49,5 +53,7 @@ vko 5 yht. 14 tuntia
 
 vko 6 yht. 19 tuntia
 
-**koko kurssi yhteensä 70 tuntia**
+vko 7 yht. 14 tuntia
+
+**koko kurssi yhteensä 84 tuntia**
 
