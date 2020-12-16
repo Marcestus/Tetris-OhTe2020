@@ -1,9 +1,7 @@
 package tetris.domain;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
-import tetris.ui.GameView;
 
 /**
  * Pelilogiikkaa kuvaava luokka.
@@ -44,7 +42,7 @@ public class TetrisGame {
     
     public TetrisGame() throws Exception {
         this.properties = new Properties();
-        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.stream = TetrisGame.class.getResourceAsStream("/tetris/config.properties");
         this.properties.load(this.stream);
         this.boardHeight = 20;
         this.boardWidth = 10;
@@ -75,7 +73,7 @@ public class TetrisGame {
      */
     public TetrisGame(int type) throws Exception {
         this.properties = new Properties();
-        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.stream = TetrisGame.class.getResourceAsStream("/tetris/config.properties");
         this.properties.load(this.stream);
         this.boardHeight = 20;
         this.boardWidth = 10;

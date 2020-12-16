@@ -1,17 +1,12 @@
 package tetris.dao;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tetris.domain.HighScore;
-import tetris.ui.GameView;
 
 public class LeaderboardDaoTest {
     
@@ -23,7 +18,7 @@ public class LeaderboardDaoTest {
     
     public LeaderboardDaoTest() throws Exception {
         this.properties = new Properties();
-        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.stream = LeaderboardDaoTest.class.getResourceAsStream("/tetris/config.properties");
         this.properties.load(this.stream);
         this.leaderboardDaoTestDatabaseName = properties.getProperty("leaderboardDaoTestDatabase");
         this.lbDaoTest = new LeaderboardDao(leaderboardDaoTestDatabaseName);
@@ -47,9 +42,9 @@ public class LeaderboardDaoTest {
     }
     
     @Test
-    public void gettingLeaderBoardWorksCorrectly() {
+    public void gettingLeaderboardWorksCorrectly() {
         lbDaoTest.addScoreToDatabase("player1", 100);
-        leaderboard = lbDaoTest.getLeaderBoardFromDatabase();
+        leaderboard = lbDaoTest.getLeaderboardFromDatabase();
         assertEquals(1, leaderboard.size());
         resetDatabase();
     }

@@ -1,17 +1,12 @@
 package tetris.domain;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import tetris.dao.LeaderboardDao;
-import tetris.ui.GameView;
 
 public class LeaderboardTest {
     
@@ -24,7 +19,7 @@ public class LeaderboardTest {
     
     public LeaderboardTest() throws Exception{
         this.properties = new Properties();
-        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.stream = LeaderboardTest.class.getResourceAsStream("/tetris/config.properties");
         this.properties.load(this.stream);
         this.leaderboardFullTestDatabaseName = properties.getProperty("leaderboardFullTestDatabase");
         this.leaderboardEmptyTestDatabaseName = properties.getProperty("leaderboardEmptyTestDatabase");
@@ -50,7 +45,7 @@ public class LeaderboardTest {
     
     @Test
     public void foundLeaderboardPlayersAreCorrect() {
-        ArrayList<String> players = leaderboardFull.getLeaderBoardPlayers();
+        ArrayList<String> players = leaderboardFull.getLeaderboardPlayers();
         assertEquals("Player4", players.get(0));
         assertEquals("Player1", players.get(1));
         assertEquals("Player2", players.get(2));
@@ -61,7 +56,7 @@ public class LeaderboardTest {
     
     @Test
     public void foundLeaderboardPointsAreCorrect() {
-        ArrayList<Integer> points = leaderboardFull.getLeaderBoardPoints();
+        ArrayList<Integer> points = leaderboardFull.getLeaderboardPoints();
         assertEquals(1500, (int)points.get(0));
         assertEquals(1000, (int)points.get(1));
         assertEquals(900, (int)points.get(2));

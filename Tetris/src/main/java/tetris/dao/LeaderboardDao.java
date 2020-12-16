@@ -3,7 +3,6 @@ package tetris.dao;
 import java.sql.*;
 import java.util.*;
 import tetris.domain.HighScore;
-import tetris.domain.Leaderboard;
 
 /**
  * Tietokantakomennot sisältävä luokka.
@@ -17,7 +16,7 @@ public class LeaderboardDao {
     
     public LeaderboardDao(String dbName) {
         this.dbName = dbName;
-        createNewLeaderBoardTable();
+        createNewLeaderboardTable();
         leaderboard = new ArrayList<>();
         rownumber = -1;
     }
@@ -47,7 +46,7 @@ public class LeaderboardDao {
     /**
      * Uuden Leaderboard-taulun luominen tarvittaessa.
      */
-    public void createNewLeaderBoardTable() {
+    public void createNewLeaderboardTable() {
         try (Connection dbConn = connect()) {
             Statement stmt = dbConn.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS Leaderboard (id INTEGER PRIMARY KEY, nickname TEXT, points INTEGER)";
@@ -73,7 +72,7 @@ public class LeaderboardDao {
         } catch (SQLException e) {
             System.out.println("Adding new score to leaderboard failed with message: " + e.getMessage());
         }
-        leaderboard = getLeaderBoardFromDatabase();
+        leaderboard = getLeaderboardFromDatabase();
         return leaderboard;
     }
     
@@ -83,7 +82,7 @@ public class LeaderboardDao {
      */
     public ArrayList<HighScore> removeScoreFromDatabase() {
         try (Connection dbConn = connect()) {
-            getLeaderBoardFromDatabase();
+            getLeaderboardFromDatabase();
             String query = "DELETE FROM Leaderboard WHERE id = ?";
             PreparedStatement stmt = dbConn.prepareStatement(query);
             stmt.setInt(1, rownumber);
@@ -91,7 +90,7 @@ public class LeaderboardDao {
         } catch (SQLException e) {
             System.out.println("Removing old score from leaderboard failed with message: " + e.getMessage());
         }
-        leaderboard = getLeaderBoardFromDatabase();
+        leaderboard = getLeaderboardFromDatabase();
         return leaderboard;
     }
     
@@ -99,7 +98,7 @@ public class LeaderboardDao {
      * Leaderboardin hakeminen tietokannasta.
      * @return päivitetty leaderboard listana
      */
-    public ArrayList<HighScore> getLeaderBoardFromDatabase() {
+    public ArrayList<HighScore> getLeaderboardFromDatabase() {
         try (Connection dbConn = connect()) {
             String query = "SELECT ROW_NUMBER () OVER (ORDER BY points DESC) rownbr, id, nickname, points FROM Leaderboard";
             Statement stmt = dbConn.createStatement();

@@ -1,6 +1,5 @@
 package tetris.ui;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import javafx.animation.SequentialTransition;
 import javafx.animation.PauseTransition;
@@ -24,8 +23,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.TextAlignment;
 import tetris.domain.TetrisGame;
@@ -430,13 +427,13 @@ public class GameView extends Application {
         leaderboardSceneTitle.setFont(Font.font("Arial", 20));
         
         //leaderboardSceneGrid
-        ArrayList<String> leaderboardScenePlayers = leaderboard.getLeaderBoardPlayers();
+        ArrayList<String> leaderboardScenePlayers = leaderboard.getLeaderboardPlayers();
         if (leaderboardScenePlayers.size() < 5) {
             for (int i = leaderboardScenePlayers.size(); i < 5; i++) {
                 leaderboardScenePlayers.add("-");
             }
         }
-        ArrayList<Integer> leaderboardScenePoints = leaderboard.getLeaderBoardPoints();
+        ArrayList<Integer> leaderboardScenePoints = leaderboard.getLeaderboardPoints();
         if (leaderboardScenePoints.size() < 5) {
             for (int i = leaderboardScenePoints.size(); i < 5; i++) {
                 leaderboardScenePoints.add(0);

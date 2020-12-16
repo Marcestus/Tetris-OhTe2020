@@ -15,7 +15,7 @@ public class Leaderboard {
     
     public Leaderboard(String dataBaseName) {
         this.lbDao = new LeaderboardDao(dataBaseName);
-        this.leaderboard = lbDao.getLeaderBoardFromDatabase();
+        this.leaderboard = lbDao.getLeaderboardFromDatabase();
     }
 
     public LeaderboardDao getLbDao() {
@@ -42,9 +42,9 @@ public class Leaderboard {
      * @see tetris.dao.LeaderboardDao#getLeaderBoardFromDatabase() 
      * @return leaderboardin pelitulosten nimimerkit listana
      */
-    public ArrayList<String> getLeaderBoardPlayers() {
+    public ArrayList<String> getLeaderboardPlayers() {
         ArrayList<String> players = new ArrayList<>();
-        leaderboard = lbDao.getLeaderBoardFromDatabase();
+        leaderboard = lbDao.getLeaderboardFromDatabase();
         for (HighScore highscore : leaderboard) {
             players.add(highscore.getPlayer());
         }
@@ -56,9 +56,9 @@ public class Leaderboard {
      * @see tetris.dao.LeaderboardDao#getLeaderBoardFromDatabase() 
      * @return leaderboardin pelitulosten pisteet listana
      */
-    public ArrayList<Integer> getLeaderBoardPoints() {
+    public ArrayList<Integer> getLeaderboardPoints() {
         ArrayList<Integer> points = new ArrayList<>();
-        leaderboard = lbDao.getLeaderBoardFromDatabase();
+        leaderboard = lbDao.getLeaderboardFromDatabase();
         for (HighScore highscore : leaderboard) {
             points.add(highscore.getPoints());
         }
