@@ -16,22 +16,6 @@ public class ScoreTest {
     }
     
     @Test
-    public void pointsGetAddedCorrectlyWhenLevelIsTwo() {
-        score.setLevel(2);
-        score.addPoints(1);
-        assertEquals(120, score.getPoints());
-        score.setLevel(3);
-        score.addPoints(2);
-        assertEquals(520, score.getPoints());
-        score.setLevel(4);
-        score.addPoints(3);
-        assertEquals(2020, score.getPoints());
-        score.setLevel(5);
-        score.addPoints(4);
-        assertEquals(9220, score.getPoints());
-    }
-    
-    @Test
     public void clearedLinesGetAddedCorrectly() {
         score.setLinesCleared(21);
         score.addClearedLines(4);
@@ -39,22 +23,14 @@ public class ScoreTest {
     }
     
     @Test
-    public void levelGetsUpCorrectly() {
-        score.setLevel(2);
-        score.setLinesCleared(31);
-        score.levelUp();
-        assertEquals(3, score.getLevel());
-    }
-    
-    @Test
-    public void maxLevelReachedIsSetCorrectly() {
-        score.setLevel(9);
-        score.setLinesCleared(101);
-        score.levelUp();
-        assertEquals(10, score.getLevel());
-        assertEquals(true, score.getMaxLevelReached());
-        score.setLinesCleared(121);
-        score.levelUp();
-        assertEquals(10, score.getLevel());
+    public void pointsGetAddedCorrectly() {
+        score.setPoints(100);
+        score.setGameLevel(1);
+        score.addPoints(2);
+        assertEquals(200, score.getPoints());
+        score.addPoints(3);
+        assertEquals(500, score.getPoints());
+        score.addPoints(4);
+        assertEquals(1700, score.getPoints());
     }
 }
