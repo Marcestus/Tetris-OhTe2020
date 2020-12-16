@@ -6,7 +6,7 @@ import java.util.*;
  * Pelilogiikkaa kuvaava luokka.
  * Aktiivisella palikalla tarkoitetaan sitä palikkaa, jota pelaaja liikuttaa.
  * Passiivisilla tiilillä tarkoitetaan jo pelattuja palikoita, jotka ovat jäätyneet paikoilleen. Näistä pyritään muodostamaan täysiä rivejä.
- * Passiivisten palikoiden käsittely hajotetaan yksittäisiksi tiiliksi, jotta täysien rivien poistaminen helpottuu.
+ * Passiivisiksi muuttuneiden palikoiden käsittely hajotetaan yksittäisiksi tiiliksi, jotta täysien rivien poistaminen helpottuu.
  */
 
 public class TetrisGame {
@@ -19,12 +19,10 @@ public class TetrisGame {
     private int boardHeight;
     private int boardWidth;
     private Score score;
-    private GameSpeed gameSpeed;
     private Shape activeShape;
     private Tile[] activeShapeTiles;
     private boolean[][] activeTileCoord;
     private String shapeType;
-    private boolean shapeIsTypeO;
     private int centerX;
     private int centerY;
     private int edge;
@@ -43,7 +41,6 @@ public class TetrisGame {
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();
-        this.gameSpeed = new GameSpeed();
         this.activeShape = createRandomShape();
         this.activeShapeTiles = activeShape.getTiles();
         this.activeTileCoord = new boolean[boardWidth][boardHeight];
@@ -72,7 +69,6 @@ public class TetrisGame {
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();
-        this.gameSpeed = new GameSpeed();
         this.activeShape = createRandomShape(type);
         this.activeShapeTiles = activeShape.getTiles();
         this.activeTileCoord = new boolean[boardWidth][boardHeight];
@@ -91,7 +87,6 @@ public class TetrisGame {
         this.tileToBeRemoved = new HashSet<>();
         this.newPassiveTiles = new ArrayList<>();
     }
-    
     
     public int getBoardHeight() {
         return boardHeight;
@@ -121,10 +116,6 @@ public class TetrisGame {
         return score;
     }
     
-    public GameSpeed getGameSpeed() {
-        return gameSpeed;
-    }
-    
     /**
      * Aktiivisen palikan tiilien sijaintitietojen päivitys.
      * Avustaa GameView-luokkaa.
@@ -138,7 +129,7 @@ public class TetrisGame {
     }
     
     /**
-     * Aktiivisen palikan tiilien sijaintitietojen nollaaminen.
+     * Aktiivisen palikan tiilien sijaintitietojen nollaus.
      * Avustaa GameView-luokkaa.
      */
     public void resetActiveShapeCoord() {
@@ -162,7 +153,7 @@ public class TetrisGame {
     }
     
     /**
-     * Passiivisten tiilien sijaintietojen nollaaminen.
+     * Passiivisten tiilien sijaintietojen nollaus.
      * * Avustaa GameView-luokkaa.
      */
     public void resetPassiveTileCoord() {
@@ -174,6 +165,7 @@ public class TetrisGame {
     /**
      * Uuden aktiivisen palikan luominen, kun vanha ei pääse enää liikkumaan alaspäin.
      * Aktiivinen palikka arvotaan satunnaisesti.
+     * @see tetris.domain.Shape
      * @return uusi aktiivinen palikka
      */
     public Shape createRandomShape() {
@@ -193,7 +185,8 @@ public class TetrisGame {
     /**
      * Testauksen vaihtoehtoinen metodi uuden aktiivisen palikan luomiselle, kun vanha ei pääse enää liikkumaan alaspäin.
      * Testausta varten metodille annetaan palikan tyyppi, eli se ei ole satunnainen.
-     * @param type minkä tyyppinen uusi aktiivinen palikka luodaan
+     * @param type luotavan aktiivisen palikan tyyppi
+     * @see tetris.domain.Shape
      * @return uusi aktiivinen palikka
      */
     public Shape createRandomShape(int type) {
@@ -205,6 +198,28 @@ public class TetrisGame {
             case 4: return new Shape("O");
             case 5: return new Shape("I");
             default: return new Shape("T");
+        }
+    }
+    
+    /**
+     * Aktiivisen palikan putoamisnopeuden ja pelin vaikeustason määritys.
+     * @param chosenGameLevel pelaajan valitsema vaikeustaso menu-näkymän liukuvalikosta
+     * @see tetris.domain.Score
+     * @return aktiivisen palikan putoamisnopeus
+     */
+    public int setGameSpeedAndGameLevel(String chosenGameLevel) {
+        score.setGameLevelText(chosenGameLevel);
+        switch (chosenGameLevel) {
+            case "Easy":
+                score.setGameLevel(1);
+                return 800;
+            case "Moderate":
+                score.setGameLevel(2);
+                return 500;
+            case "Hard":
+                score.setGameLevel(3);
+                return 200;
+            default: return 0;
         }
     }
     
@@ -254,7 +269,7 @@ public class TetrisGame {
     }
     
     /**
-     * Aktiivisen palikan liikuttaminen alaspäin niin kauan, kunnes se ei pääse enää putoamaan alaspäin ("Hard drop").
+     * Aktiivisen palikan liikuttaminen alaspäin niin kauan, kunnes se ei pääse enää putoamaan alaspäin.
      * Kun palikka ei enää pääse liikkumaan alaspäin, sen tiilet siirretään passiivisten joukkoon ja kutsutaan metodia, joka luo uuden aktiivisen palikan.
      */
     public void hardDrop() {
@@ -312,7 +327,7 @@ public class TetrisGame {
     
     /**
      * Aktiivisen palikan kääntäminen palikan tyypin mukaisella tavalla.
-     * Uusiin mahdollisiin koordinaatteihin vaikuttaa se, tiilet sijaitsevat keskitiileen nähden:
+     * Uusiin mahdollisiin koordinaatteihin vaikuttaa se, missä tiilet sijaitsevat keskitiileen nähden:
      * suoraan sivulla, vinosti nurkassa vai kahden päässä sivulla (vain "I" -palikassa)
      * Lisäksi kääntymiseen vaikuttaa, kuinka monta kääntötilaa (orientation) palikalla on:
      * "O" -palikka ei käänny ollenkaan kun taas "I", "Z" ja "S" -palikoilla on vain kaksi kääntötilaa. Ne kääntyvät vuorotellen 90 astetta myötä- ja vastapäivään.
@@ -387,42 +402,36 @@ public class TetrisGame {
             nextY = centerY;
         } else if (t.getX() == centerX - 1) { // vasemmalla puolella
             nextX = centerX;
-            nextY = reverse ? centerY + 1 : centerY - 1;
-        } else if (t.getY() == centerY - 1) { // yläpuolella
+            nextY = centerY - 1;
+        } else { // yläpuolella
             nextX = reverse ? centerX - 1 : centerX + 1;
             nextY = centerY;
         }
     }
     
     private void newCoordDoubleSideTile(Tile t) {
-        if (t.getX() == centerX + 2) { // oikealla puolella
+        if (t.getX() == centerX - 2) { // vasemmalla puolella
             nextX = centerX;
-            nextY = reverse ? centerY - 2 : centerY + 2;
-        } else if (t.getY() == centerY + 2) { // alapuolella
-            nextX = reverse ? centerX + 2 : centerX - 2;
-            nextY = centerY;
-        } else if (t.getX() == centerX - 2) { // vasemmalla puolella
-            nextX = centerX;
-            nextY = reverse ? centerY + 2 : centerY - 2;
-        } else if (t.getY() == centerY - 2) { // yläpuolella
-            nextX = reverse ? centerX - 2 : centerX + 2;
+            nextY = centerY - 2;
+        } else { // yläpuolella
+            nextX = centerX - 2;
             nextY = centerY;
         }
     }
     
     private void newCoordCornerTile(Tile t) {
         if (t.getX() == centerX - 1 && t.getY() == centerY - 1) { // oikea ylänurkka
-            nextX = reverse ? centerX - 1 : centerX + 1;
-            nextY = reverse ? centerY + 1 : centerY - 1;
+            nextX = centerX + 1;
+            nextY = centerY - 1;
         } else if (t.getX() == centerX + 1 && t.getY() == centerY - 1) { // oikea alanurkka
             nextX = reverse ? centerX - 1 : centerX + 1;
             nextY = reverse ? centerY - 1 : centerY + 1;
-        } else if (t.getX() == centerX + 1 && t.getY() == centerY + 1) { // vasen alanurkka
+        } else if (t.getX() == centerX + 1) { // vasen alanurkka
             nextX = reverse ? centerX + 1 : centerX - 1;
             nextY = reverse ? centerY - 1 : centerY + 1;
-        } else if (t.getX() == centerX - 1 && t.getY() == centerY + 1) { // vasen ylänurkka
-            nextX = reverse ? centerX + 1 : centerX - 1;
-            nextY = reverse ? centerY + 1 : centerY - 1;
+        } else { // vasen ylänurkka
+            nextX = centerX - 1;
+            nextY = centerY - 1;
         }
     }
     
@@ -441,10 +450,21 @@ public class TetrisGame {
     }
     
     /**
-     * Vaakasuorien täysien rivien etsintä passiivisten tiilien joukosta.
-     * @return true, jos täysiä rivejä löytyy; false, jos ei löydy
+     * Vaakasuorien rivien etsiminen.
+     * Jos rivejä löytyy, ne poistetaan ja yläpuolella olevat passiiviset tiilet pudotetaan alaspäin.
+     * Lisäksi käynnissä olevan pelin pistetilanne päivitetään.
+     * @see tetris.domain.Score#addPoints(int) 
+     * @see tetris.domain.Score#addClearedLines(int) 
      */
-    public boolean checkForFullRows() {
+    public void fullRowsHandler() {
+        if (checkForFullRows()) {
+            deleteRowsAndDropRowsAboveFullRows();
+            score.addPoints(fullRowsAtSameTime);
+            score.addClearedLines(fullRowsAtSameTime);
+        }
+    }
+    
+    private boolean checkForFullRows() {
         for (int j = 0; j < boardHeight; j++) {
             fullRowCounter[j] = 0;
         }
@@ -463,11 +483,7 @@ public class TetrisGame {
         return false;
     }
     
-    /**
-     * Täysien rivien poistaminen ja niiden yläpuolella olevien passiivisten tiilien pudottaminen alaspäin.
-     * Tämä tehdään niin monta kertaa, kuin täysiä rivejä syntyy kerralla (1-4 kpl). Poistettujen rivien kokonaismäärä päivitetään samalla Score -olioon.
-     */
-    public void deleteRowsAndDropRowsAboveFullRows() {
+    private void deleteRowsAndDropRowsAboveFullRows() {
         while (!fullRows.isEmpty()) {
             rowToBeRemoved = fullRows.get(0);
             fullRows.remove(0);
@@ -518,18 +534,8 @@ public class TetrisGame {
     }
     
     /**
-     * Pelin pistetilanteen ja pelinopeuden päivitys.
-     */
-    public void setScoreAndSpeed() {
-        score.addPoints(fullRowsAtSameTime);
-        score.addClearedLines(fullRowsAtSameTime);
-        score.levelUp();
-        gameSpeed.setGameSpeed(score.getLevel());
-    }
-    
-    /**
      * Game over -määreiden selvittäminen eli jääkö aktiivinen palikka pelialueen yläreunan yläpuolelle.
-     * @return true, jos game overin määreet täyttyvät; false, jos ei
+     * @return true, jos game overin määreet täyttyvät ja false, jos määreet eivät täyty
      */
     public boolean gameOver() {
         for (Tile activeShapeTile : activeShapeTiles) {

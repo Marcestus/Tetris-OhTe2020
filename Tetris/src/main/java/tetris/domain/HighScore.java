@@ -1,6 +1,10 @@
 package tetris.domain;
 
-public class HighScore implements Comparable<HighScore> {
+/**
+ * Leaderboardiin pääsevää pelitulosta kuvaava luokka.
+ * Muodostuu pelaajan syöttämästä nimimerkistä ja pelin aikana kerätyistä kokonaispisteistä.
+ */
+public class HighScore {
     
     private String player;
     private int points;
@@ -13,20 +17,9 @@ public class HighScore implements Comparable<HighScore> {
     public String getPlayer() {
         return player;
     }
-
-    public void setPlayer(String player) {
-        this.player = player;
-    }
-
+    
     public int getPoints() {
         return points;
     }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
     
-    public int compareTo(HighScore other) {
-        return other.points - this.points;
-    }
 }

@@ -2,9 +2,7 @@ package tetris.domain;
 
 /**
  * Yksittäistä tiiltä kuvaava luokka.
- * Tetris-palikat rakentuvat neljästä tiilestä,
- * joilla on kullakin omat x- ja y- akselin mukaiset
- * koordinaatit.
+ * Tetris-palikat rakentuvat neljästä tiilestä, joilla on omat x- ja y- akselin suuntaiset koordinaatit.
  */
 
 public class Tile {

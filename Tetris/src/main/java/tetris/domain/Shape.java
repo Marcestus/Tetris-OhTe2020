@@ -2,13 +2,9 @@ package tetris.domain;
 
 /**
  * Yksittäistä Tetris-palikkaa kuvaava luokka.
- * Palikka koostuu neljästä tiilestä,
- * joista keskimmäinen on luotaessa aina sama.
- * Tyypistä riippuen palikan kolme muuta tiiltä luodaan
- * eri puolille keskipalikkaa.
- * Palikalla on tyypistä riippuen eri määrä kääntötiloja (orientation),
- * joiden tilaa pidetään muistissa tässä luokassa.
- * Kääntötila vaikuttaa nimensä mukaisesti palikan kääntymiseen.
+ * Tetris-palikka rakentuu neljästä tiilestä, joista keskimmäisen koordinaatit ovat aina samat.
+ * Palikan kolme muuta tiiltä luodaan eri puolille keskitiiltä. Näiden tiilien koordinaatit riippuvat palikan tyypistä.
+ * Kun palikkaa käännetään, sen asentoa seurataan orientation -muuttujassa.
  */
 
 public class Shape {
@@ -44,26 +40,19 @@ public class Shape {
     
     private void createShape(String type) {
         switch (type) {
-            case "L":
-                getCoordL();
+            case "L": getCoordL();
                 break;
-            case "J":
-                getCoordJ();
+            case "J": getCoordJ();
                 break;
-            case "S":
-                getCoordS();
+            case "S": getCoordS();
                 break;
-            case "Z":
-                getCoordZ();
+            case "Z": getCoordZ();
                 break;
-            case "O":
-                getCoordO();
+            case "O": getCoordO();
                 break;
-            case "I":
-                getCoordI();
+            case "I": getCoordI();
                 break;
-            case "T":
-                getCoordT();
+            case "T": getCoordT();
                 break;
         }
     }
