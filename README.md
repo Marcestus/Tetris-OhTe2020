@@ -56,7 +56,7 @@ Checkstyle -tarkistukset on määritelty sovelluksen juuressa sijaitsevassa *'ch
 
 Tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle**
 
-Selaimeen avattava raportti löytyy *'target/site/checstyle.html'*
+Selaimeen avattava raportti löytyy *'target/site/checkstyle.html'*
 
 ### JavaDoc 
 
