@@ -139,3 +139,17 @@ Puuttuu!
 **Tietojen tallentaminen tietokantaan**
 
 Puuttuu!
+
+## Ohjelman rakenteeseen jääneet heikkoudet
+
+**Käyttöliittymä**
+
+Ohjelman käyttöliittymän kaikki näkymät toteutetaan samassa GameView -luokassa. Rakennetta on pyritty selkeyttämään hajauttamalla toiminta omiksi metodeikseen. Nykyinen rakenne voisi kuitenkin olla syytä korvata FXML-määrittelyllä, jolloin rakenne olisi vielä selkeämpi ja luokat lyhyempiä.
+
+**Sovelluslogiikka**
+
+Ohjelman sovelluslogiikasta vastaava TetrisGame -luokka on melko pitkä, sillä se käsittelee kaiken pelin toimintalogiikan. Palikoiden liikuttamiseen liittyvä logiikka voitaisiin mahdollisesti vielä eriyttää omaksi luokakseen.
+
+**DAO-luokka**
+
+Sovelluksen Data Access Object -suunnittelumallin logiikkaa voisi vielä parantaa luomalla erilliset rajapinnat tietokantalogiikkaa ylläpitävän Leaderboard -luokan ja tietokannan hallitsemisesta vastaavan LeaderboardDao -luokan väliin. Toisaalta tietokantalogiikka on eriytetty omaksi luokakseen sovelluksen muusta logiikasta (TetrisGame -luokka), mikä parantaa osaltaan tietokannan eriyttämistä sovelluslogiikasta.
