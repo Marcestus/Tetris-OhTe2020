@@ -86,7 +86,7 @@ Puuttuu!
 ## Tiedostot
 
 Sovellus tallentaa parhaat viisi pelitulosta tietokantaan.
-Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfigurointitiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) määrittelee tiedostojen nimet.
+Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfigurointitiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) tietokannan nimen.
 
 Pelitulokset tallennetaan *Leaderboard* -tauluun, joka sisältää sarakkeet
 ```
