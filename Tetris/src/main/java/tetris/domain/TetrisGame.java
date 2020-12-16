@@ -1,7 +1,9 @@
 package tetris.domain;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.*;
+import tetris.ui.GameView;
 
 /**
  * Pelilogiikkaa kuvaava luokka.
@@ -38,10 +40,12 @@ public class TetrisGame {
     private HashSet<Integer> tileToBeRemoved;
     private ArrayList<Tile> newPassiveTiles;
     private Properties properties;
+    private InputStream stream;
     
     public TetrisGame() throws Exception {
         this.properties = new Properties();
-        this.properties.load(new FileInputStream("config.properties"));
+        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.properties.load(this.stream);
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();
@@ -71,7 +75,8 @@ public class TetrisGame {
      */
     public TetrisGame(int type) throws Exception {
         this.properties = new Properties();
-        this.properties.load(new FileInputStream("config.properties"));
+        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.properties.load(this.stream);
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();

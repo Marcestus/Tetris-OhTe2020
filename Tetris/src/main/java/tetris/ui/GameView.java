@@ -1,6 +1,7 @@
 package tetris.ui;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import javafx.animation.SequentialTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -72,6 +73,7 @@ public class GameView extends Application {
     private Leaderboard leaderboard;
     private String leaderboardDatabaseName;
     private Properties properties;
+    private InputStream stream;
     
     public static void main(String[] args) {
         launch(args);
@@ -80,7 +82,8 @@ public class GameView extends Application {
     @Override
     public void init() throws Exception {
         this.properties = new Properties();
-        this.properties.load(new FileInputStream("config.properties"));
+        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.properties.load(this.stream);
         this.leaderboardDatabaseName = properties.getProperty("leaderboardDatabase");
         resetTetrisGame();
     }

@@ -1,6 +1,7 @@
 package tetris.domain;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 import org.junit.After;
@@ -10,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tetris.dao.LeaderboardDao;
+import tetris.ui.GameView;
 
 public class LeaderboardTest {
     
@@ -18,10 +20,12 @@ public class LeaderboardTest {
     private Properties properties;
     private String leaderboardFullTestDatabaseName;
     private String leaderboardEmptyTestDatabaseName;
+    private InputStream stream;
     
     public LeaderboardTest() throws Exception{
         this.properties = new Properties();
-        this.properties.load(new FileInputStream("config.properties"));
+        this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
+        this.properties.load(this.stream);
         this.leaderboardFullTestDatabaseName = properties.getProperty("leaderboardFullTestDatabase");
         this.leaderboardEmptyTestDatabaseName = properties.getProperty("leaderboardEmptyTestDatabase");
         this.leaderboardFull = new Leaderboard(leaderboardFullTestDatabaseName);

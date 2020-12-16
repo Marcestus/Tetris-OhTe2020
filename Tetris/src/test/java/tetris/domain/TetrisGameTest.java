@@ -1,6 +1,8 @@
 package tetris.domain;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +21,7 @@ public class TetrisGameTest {
     TetrisGame shapeIGame;
     TetrisGame shapeTGame;
     
-    public TetrisGameTest() {
+    public TetrisGameTest() throws Exception {
         this.randomGame = new TetrisGame();
         this.shapeLGame = new TetrisGame(0);
         this.shapeJGame = new TetrisGame(1);
@@ -28,7 +30,6 @@ public class TetrisGameTest {
         this.shapeOGame = new TetrisGame(4);
         this.shapeIGame = new TetrisGame(5);
         this.shapeTGame = new TetrisGame(6);
-        
     }
     
     @Test
