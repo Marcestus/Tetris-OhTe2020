@@ -5,3 +5,7 @@
 /laskarit/viikko2/Unicafe/nbproject/
 Tetris/target
 /Tetris/nbproject/
+leaderboard.db
+leaderboardDaoTest.db
+leaderboardFullTest.db
+leaderboardEmptyTest.db
