@@ -8,21 +8,93 @@ Ohjelman rakenne noudattaa kolmitasoista kerrosarkkitehtuuria, jossa tetris.ui k
 
 ## Käyttöliittymä
 
-Sovelluksen käyttöliittymä sisältää tällä hetkellä vain varsinaisen pelinäkymän. Pelinäkymä on rakennettu luokassa [tetris.ui.GameView](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/ui/GameView.java).
+Käyttöliittymä sisältää neljä erillistä näkymää
 
-Käyttöliittymä on pyritty eriyttämään täysin sovelluslogiikasta niin, että käyttöliittymä kutsuu vain sovelluslogiikasta vastaavaa luokkaa [tetris.domain.TetrisGame](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/TetrisGame.java).
+- menunäkymä
+- pelinäkymä
+- highscorenäkymä
+- leaderboardnäkymä
+
+Jokaiselle näkymälle on luotu käyttöliittymäluokkaan [tetris.ui.GameView](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/ui/GameView.java) oma Scene-olio. Näkymät ovat yksi kerrallaan näkyvissä eli asetettuna Stage-olioon.
+
+Käyttöliittymä on pyritty eriyttämään täysin sovelluslogiikasta. Sen tarkoitus on siis vastata vain näkymien näyttämisestä ja niissä olevan datan päivittämisestä. Käyttöliittymä hyödyntää tässä tehtävässään sovelluslogiikasta vastaavaa luokkaa [tetris.domain.TetrisGame](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/TetrisGame.java) sekä leaderboardista ja sen toimintalogiiksta vastaavaa luokkaa [tetris.domain.Leaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Leaderboard.java). Sovelluslogiikka siis huolehtii mm. siitä, että pelinäkymän tiedot, kuten palikoiden sijainti ja pistetilanne, päivittyvät oikein. Leaderboard -luokka huolehtii puolestaan leaderboardnäkymän päivityksestä ja highscorenäkymän käsittelystä silloin, kun pisteet riittävät leaderboardiin pääsemiseen.
 
 ## Sovelluslogiikka
 
-Sovelluksen logiikan perustan luovat luokat Tile, Shape, Score ja GameSpeed. Näistä kaksi ensimmäistä kuvaavat Tetris-pelin palikoita ja niiden rakenneosia, tiiliä. Score pitää puolestaan yllä pelin pistetilannetta ja GameSpeed palikoiden putoamisnopeutta. Putoamisnopeus riippuu siitä, kuinka monta täyttä riviä pelaaja on onnistunut tuhoamaan.
+Sovelluslogiikan perustan luovat luokat [Tile](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Tile.java), [Shape](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Shape.java) ja [Score](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Score.java). Näistä kaksi ensimmäistä kuvaavat Tetris-pelin palikoita ja niiden rakenneosia, tiiliä. Score pitää puolestaan yllä pelin pistetilannetta.
 
 <img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaaviokuva.jpg">
 
-Pelilogiikan perusluokkia hyödynnetään sovelluksen logiikasta vastaavassa TetrisGame -luokassa. Luokka tarjoaa metodit mm. aktiivisen Tetris-palikan liikuttamiseen, täysien rivien poistamiseen sekä pistetilanteen ja palikoiden putoamisnopeuden päivittämiseen.
+Pelilogiikan perusluokkia hyödynnetään pelin sovelluslogiikasta vastaavassa [TetrisGame](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/TetrisGame.java) -luokassa. Luokka tarjoaa mm. seuraavat metodit aktiivisen Tetris-palikan liikuttamiseen, täysien rivien poistamiseen sekä pistetilanteen päivittämiseen.
+
+```
+void moveDown()
+void moveLeft()
+void moveRight()
+void hardDrop()
+void rotate()
+void fullRowsHandler()
+```
+Lisäksi luokka huolehtii myös mm. seuraavien metodien avulla uuden aktiivisen palikan pyytämisestä perusluokilta, palikoiden putoamisnopeuden säätämisestä valitun vaikeustason mukaan ja pelin päättymistä indikoivien määreiden täyttymisen seuraamisesta.
+
+```
+Shape createRandomShape()
+int setGameSpeedAndGameLevel(String chosenGameLevel)
+boolean gameOver()
+```
+
+Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfiguraatiotiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) määrittelee palikoiden putoamisnopeuden.
+
+[Leaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Leaderboard.java) -luokka vastaa puolestaan siitä, milloin pelitulos on kyllin hyvä päästäkseen leaderboardiin. Toimintaa avustava [HighScore](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/HighScore.java) -luokka pitää siis yllä tietoa leaderboardiin pääsevästä pelituloksesta (nimimerkki ja pisteet). Edellisiin toimintoihin luotuja metodeja Leaderboard -luokassa ovat esim.
+
+```
+ArrayList<HighScore> getLeaderboard()
+boolean pointsEnoughForLeaderboard(int currentPoints)
+```
+
+## Tietojen pysyväistalletus ja tietojen hakeminen tietokannasta
+
+Edellä kuvattu [Leaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Leaderboard.java) -luokka toimii linkkinä tetris.dao -pakkauksen [LeaderboardDao](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/dao/LeaderboardDao.java) -luokkaan. Leaderboard -luokka siis antaa toimintalogiikan LeaderboardDaolle ja ilmaisee mm. seuraavin metodein, miten sen kuuluu käsitellä tietokantaa.
+
+Tietojen hakeminen:
+
+```
+int getHighScore()
+ArrayList<String> getLeaderboardPlayers()
+ArrayList<Integer> geLeaderboardPoints()
+```
+
+Tietojen tallentaminen:
+
+```
+void addNewHighScoreToLeaderboard(String player, int currentPoints)
+```
+
+LeaderboardDao -luokka vastaa puolestaan mm. seuraavin metodein tietojen varsinaisesta käsittelystä ohjelman tietokannassa:
+```
+Connection connect()
+void createNewLeaderBoardTable()
+ArrayList<HighScore> addScoreToDatabase(String nickname, int points)
+ArrayList<HighScore> removeScoreFromDatabase()
+ArrayList<HighScore> getLeaderBoardFromDatabase()
+```
+
+## Tiedostot
+
+Sovellus tallentaa parhaat viisi pelitulosta tietokantaan.
+Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfiguraatiotiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) määrittelee tiedostojen nimet.
+
+Pelitulokset tallennetaan *Leaderboard* -tauluun, joka sisältää sarakkeet
+```
+id INTEGER PRIMARY KEY
+nickname TEXT
+points INTEGER
+```
+eli jokaisesta tuloksesta tallentuu yksilöivä id, pelaajan syöttämä nimimerkki ja pisteet.
 
 ## Päätoiminnallisuudet
 
-Seuraavat sekvenssikaaviot kuvastavat sovelluksen päätoiminnallisuuksia.
+Seuraavat sekvenssikaaviot kuvastavat sovelluksen edellä kuvattuja päätoiminnallisuuksia.
 
 **Palikan liikkuminen alaspäin**
 
@@ -36,7 +108,7 @@ Aktiivinen palikka liikkuu pelaajan käskystä vasemmalle ja oikealle, mikäli s
 
 <img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rightAndLeft.png">
 
-**Palikan kääntyminen ja putoaminen alaspäin ("Hard drop")**
+**Palikan kääntyminen ja putoaminen alaspäin**
 
 Aktiivinen palikka kääntyy pelaajan käskystä sekä putoaa alaspäin, kunnes se osuu passiiviseen tiileen tai pelialueen alareunaan.
 
@@ -47,3 +119,23 @@ Aktiivinen palikka kääntyy pelaajan käskystä sekä putoaa alaspäin, kunnes 
 Kun passiiviset tiilet muodostavat kokonaisen täyden rivin, se poistuu ja sen yläpuolella olevat passiiviset tiilet tippuvat alaspäin poistuneen rivin paikalle. Samalla pisteet päivittyvät.
 
 <img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/FullRowsSequence.png">
+
+**Putoamisnopeuden säätäminen valitun vaikeustason mukaan**
+
+Puuttuu!
+
+**Pelin päättymistä indikoivien määreiden täyttymisen seuraaminen**
+
+Puuttuu!
+
+**Pelituloksen vertaaminen leaderboardin tuloksiin - päästäänkö leaderboardiin**
+
+Puuttuu!
+
+**Tietojen hakeminen tietokannasta**
+
+Puuttuu!
+
+**Tietojen tallentaminen tietokantaan**
+
+Puuttuu!
