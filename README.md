@@ -28,14 +28,6 @@ Viisi parasta pelitulosta pääsevät leaderboardiin.
 
 ## Komentorivitoiminnot
 
-### Testaus
-
-Sovelluksen testit voidaan suorittaa komennolla **mvn test**
-
-Testikattavuusraportti luodaan puolestaan komennolla **mvn jacoco:report**
-
-Selaimeen avattava raportti löytyy *'target/site/jacoco/index.html'*
-
 ### Suoritettavan jarin generointi
 
 Suoritettava jar-tiedosto generoidaan komennolla **mvn package**
@@ -49,6 +41,14 @@ Generoinnin voi purkaa komennolla **mvn clean**, joka tyhjentää koko *'target/
 ### Ohjelman suorittaminen komentoriviltä
 
 Komento **mvn compile exec:java -Dexec.mainClass=tetris.main.Main** suorittaa ohjelman komentorivillä
+
+### Testaus
+
+Sovelluksen testit voidaan suorittaa komennolla **mvn test**
+
+Testikattavuusraportti luodaan puolestaan komennolla **mvn jacoco:report**
+
+Selaimeen avattava raportti löytyy *'target/site/jacoco/index.html'*
 
 ### Checkstyle
 
