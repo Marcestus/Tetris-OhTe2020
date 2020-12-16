@@ -20,7 +20,7 @@ Koska graafista käyttöliittymää hallinnoivaa [GameView](https://github.com/M
 
 **Testikattavuus**
 
-Käyttöliittymää ei ole testattu, mutta muuten sovelluksen rivikattavuus on xx% ja haarautumakattavus yy%. Main-luokkaakaan ei ole testattu, sillä se avustaa vain JavaFX:n avulla luodun käyttöliittymän käynnistämisen. Testaamatta jäivät myös ne muutamat suoraviivaiset getterit ja setterit, joita kutsutaan vain sovelluksen käyttöliittymä-luokasta.
+Käyttöliittymää ei ole testattu, mutta muuten sovelluksen rivikattavuus on 96% ja haarautumakattavus 94%. Main-luokkaakaan ei ole testattu, sillä se avustaa vain JavaFX:n avulla luodun käyttöliittymän käynnistämisen. Testaamatta jäivät myös ne muutamat suoraviivaiset getterit ja setterit, joita kutsutaan vain sovelluksen käyttöliittymä-luokasta.
 
 ![Testikattavuusraportti](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/testikattavuusraportti.png)
 
