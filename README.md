@@ -44,7 +44,7 @@ Komento **mvn compile exec:java -Dexec.mainClass=tetris.main.Main** suorittaa oh
 
 ### Checkstyle
 
-Tiedostoon checkstyle.xml määritellyt tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle** ja mahdollisia virheilmoituksia voi tarkastella avamaalla tiedoston '*target/site/checstyle.html'* selaimeen
+Tiedostoon checkstyle.xml määritellyt tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle** ja mahdollisia virheilmoituksia voi tarkastella avaamalla tiedoston '*target/site/checstyle.html'* selaimeen
 
 ### JavaDoc 
 
