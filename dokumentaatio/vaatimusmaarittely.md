@@ -35,7 +35,7 @@ Leaderboard -näkymästä siirrytään takaisin alkuvalikkoon nappia painamalla.
 - Pelaaja voi aloittaa pelin nappia painamalla (Start game)
 - Pelaaja voi siirtyä tarkastelemaan leaderboardia nappia painamalla (Leaderboard)
 
-#### Ydintoiminnallisuudet (varsinainen pelinäkymä)
+#### Ydintoiminnallisuudet ja varsinainen pelinäkymä
 
 - Pelissä on seitsemän erimuotoista Tetris-palikkaa
   - Palikat ilmestyvät yksitellen satunnaisessa järjestyksessä pelialueen yläreunaan, josta ne alkavat pudota alaspäin vaikeustason mukaisella vakionopeudella
