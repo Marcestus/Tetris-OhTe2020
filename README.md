@@ -24,19 +24,22 @@ Viisi parasta pelitulosta pääsevät leaderboardiin.
 
 [Viikko 6](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/Marcestus/ot-harjoitustyo/releases/tag/loppupalautus)
+
 ## Komentorivitoiminnot
 
 ### Testaus
 
-Testit suoritetaan komennolla **mvn test**
-
-Testikattavuusraportti luodaan komennolla **mvn jacoco:report**, jonka jälkeen tiedoston *'target/site/jacoco/index.html'* voi avata selaimeen
+Sovelluksen testit voidaan suorittaa komennolla **mvn test**
+Testikattavuusraportti luodaan puolestaan komennolla **mvn jacoco:report**
+Selaimeen avattava raportti löytyy *'target/site/jacoco/index.html'*
 
 ### Suoritettavan jarin generointi
 
-Komento **mvn package** generoi hakemistoon *'target/'* suoritettavan jar-tiedoston *'Tetris-1.0-SNAPSHOT.jar'*
-
-Komento **mvn clean** tyhjentää target-tiedoston
+Suoritettava jar-tiedosto generoidaan komennolla **mvn package**
+Sovellus generoituu hakemistoon *'target/'*
+Sovelluksen voi suorittaa komennolla **java -jar Tetris-1.0-SNAPSHOT.jar**
+Generoinnin voi purkaa komennolla **mvn clean**, joka tyhjentää koko *'target/'* -hakemiston
 
 ### Ohjelman suorittaminen komentoriviltä
 
@@ -44,8 +47,11 @@ Komento **mvn compile exec:java -Dexec.mainClass=tetris.main.Main** suorittaa oh
 
 ### Checkstyle
 
-Tiedostoon checkstyle.xml määritellyt tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle** ja mahdollisia virheilmoituksia voi tarkastella avaamalla tiedoston '*target/site/checstyle.html'* selaimeen
+Checkstyle -tarkistukset on määritelty sovelluksen juuressa sijaitsevassa *'checkstyle.xml'* -tiedostossa
+Tarkistukset suoritetaan komennolla **mvn jxr:jxr checkstyle:checkstyle**
+Selaimeen avattava raportti löytyy *'target/site/checstyle.html'*
 
 ### JavaDoc 
 
-JavaDoc generoidaan komennolla **mvn javadoc:javadoc**, jonka jälkeen tiedoston *'target/site/apidocs/index.html'* voi avata selaimeen
+JavaDoc luodaan komenolla **mvn javadoc:javadoc**
+Selaimeen avattava JavaDoc -dokumentointi löytyy *'target/site/apidocs/index.html'*
