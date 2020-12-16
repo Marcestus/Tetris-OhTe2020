@@ -43,7 +43,7 @@ int setGameSpeedAndGameLevel(String chosenGameLevel)
 boolean gameOver()
 ```
 
-Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfiguraatiotiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) määrittelee palikoiden putoamisnopeuden.
+Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfigurointitiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) määrittelee palikoiden putoamisnopeuden.
 
 [Leaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Leaderboard.java) -luokka vastaa puolestaan siitä, milloin pelitulos on kyllin hyvä päästäkseen leaderboardiin. Toimintaa avustava [HighScore](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/HighScore.java) -luokka pitää siis yllä tietoa leaderboardiin pääsevästä pelituloksesta (nimimerkki ja pisteet). Edellisiin toimintoihin luotuja metodeja Leaderboard -luokassa ovat esim.
 
@@ -86,7 +86,7 @@ Puuttuu!
 ## Tiedostot
 
 Sovellus tallentaa parhaat viisi pelitulosta tietokantaan.
-Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfiguraatiotiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) määrittelee tiedostojen nimet.
+Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfigurointitiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties) määrittelee tiedostojen nimet.
 
 Pelitulokset tallennetaan *Leaderboard* -tauluun, joka sisältää sarakkeet
 ```
