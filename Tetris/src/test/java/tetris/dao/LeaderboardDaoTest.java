@@ -1,6 +1,8 @@
 package tetris.dao;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,9 +15,14 @@ public class LeaderboardDaoTest {
     
     LeaderboardDao lbDaoTest;
     ArrayList<HighScore> leaderboard;
+    private Properties properties;
+    private String leaderboardDaoTestDatabaseName;
     
-    public LeaderboardDaoTest() {
-        this.lbDaoTest = new LeaderboardDao("leaderboardDaoTest.db");
+    public LeaderboardDaoTest() throws Exception {
+        this.properties = new Properties();
+        this.properties.load(new FileInputStream("config.properties"));
+        this.leaderboardDaoTestDatabaseName = properties.getProperty("leaderboardDaoTestDatabase");
+        this.lbDaoTest = new LeaderboardDao(leaderboardDaoTestDatabaseName);
         this.leaderboard = new ArrayList<>();
     }
     

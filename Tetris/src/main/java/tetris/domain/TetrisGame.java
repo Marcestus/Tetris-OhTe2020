@@ -1,5 +1,6 @@
 package tetris.domain;
 
+import java.io.FileInputStream;
 import java.util.*;
 
 /**
@@ -36,8 +37,11 @@ public class TetrisGame {
     private int[] fullRowCounter;
     private HashSet<Integer> tileToBeRemoved;
     private ArrayList<Tile> newPassiveTiles;
+    private Properties properties;
     
-    public TetrisGame() {
+    public TetrisGame() throws Exception {
+        this.properties = new Properties();
+        this.properties.load(new FileInputStream("config.properties"));
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();
@@ -65,7 +69,9 @@ public class TetrisGame {
      * Poikkeaa vain uuden aktiivisen palikan luomisen osalta.
      * @param type minkä tyyppinen uusi aktiivinen palikka luodaan
      */
-    public TetrisGame(int type) {
+    public TetrisGame(int type) throws Exception {
+        this.properties = new Properties();
+        this.properties.load(new FileInputStream("config.properties"));
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();
@@ -209,16 +215,17 @@ public class TetrisGame {
      */
     public int setGameSpeedAndGameLevel(String chosenGameLevel) {
         score.setGameLevelText(chosenGameLevel);
+        int gameSpeed = 0;
         switch (chosenGameLevel) {
             case "Easy":
                 score.setGameLevel(1);
-                return 800;
+                return Integer.valueOf(properties.getProperty("gameSpeedLevel1"));
             case "Moderate":
                 score.setGameLevel(2);
-                return 500;
+                return Integer.valueOf(properties.getProperty("gameSpeedLevel2"));
             case "Hard":
                 score.setGameLevel(3);
-                return 200;
+                return Integer.valueOf(properties.getProperty("gameSpeedLevel3"));
             default: return 0;
         }
     }

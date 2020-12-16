@@ -1,5 +1,6 @@
 package tetris.ui;
 
+import java.io.FileInputStream;
 import javafx.animation.SequentialTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -21,6 +22,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.util.ArrayList;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.TextAlignment;
 import tetris.domain.TetrisGame;
@@ -66,18 +70,23 @@ public class GameView extends Application {
     private int currentLinesCleared;
     private boolean highScore;
     private Leaderboard leaderboard;
+    private String leaderboardDatabaseName;
+    private Properties properties;
     
     public static void main(String[] args) {
         launch(args);
     }
     
     @Override
-    public void init() {
+    public void init() throws Exception {
+        this.properties = new Properties();
+        this.properties.load(new FileInputStream("config.properties"));
+        this.leaderboardDatabaseName = properties.getProperty("leaderboardDatabase");
         resetTetrisGame();
     }
     
     @Override
-    public void start(Stage notUsedStage) throws Exception {
+    public void start(Stage notUsedStage) {
         //menuScene
         createMenuSceneLayout();
         menuPane = new BorderPane();
@@ -121,8 +130,12 @@ public class GameView extends Application {
     }
     
     private void resetTetrisGame() {
-        game = new TetrisGame();
-        leaderboard = new Leaderboard("leaderboard.db");
+        try {
+            game = new TetrisGame();
+        } catch (Exception e) {
+            System.out.println("Fetching file failed with message: " + e.getMessage());
+        }
+        leaderboard = new Leaderboard(leaderboardDatabaseName);
         gameOver = false;
         currentHighScore = leaderboard.getHighScore();
         boardWidth = game.getBoardWidth();

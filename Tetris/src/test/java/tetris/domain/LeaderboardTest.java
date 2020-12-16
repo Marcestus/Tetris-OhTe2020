@@ -1,6 +1,8 @@
 package tetris.domain;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,14 +15,21 @@ public class LeaderboardTest {
     
     private Leaderboard leaderboardFull;
     private Leaderboard leaderboardEmpty;
+    private Properties properties;
+    private String leaderboardFullTestDatabaseName;
+    private String leaderboardEmptyTestDatabaseName;
     
-    public LeaderboardTest() {
-        this.leaderboardFull = new Leaderboard("leaderboardFullTest.db");
-        this.leaderboardEmpty = new Leaderboard("leaderboardEmptyTest.db");
+    public LeaderboardTest() throws Exception{
+        this.properties = new Properties();
+        this.properties.load(new FileInputStream("config.properties"));
+        this.leaderboardFullTestDatabaseName = properties.getProperty("leaderboardFullTestDatabase");
+        this.leaderboardEmptyTestDatabaseName = properties.getProperty("leaderboardEmptyTestDatabase");
+        this.leaderboardFull = new Leaderboard(leaderboardFullTestDatabaseName);
+        this.leaderboardEmpty = new Leaderboard(leaderboardEmptyTestDatabaseName);
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         leaderboardFull.addNewHighScoreToLeaderboard("Player1", 1000);
         leaderboardFull.addNewHighScoreToLeaderboard("Player2", 900);
         leaderboardFull.addNewHighScoreToLeaderboard("Player3", 200);
