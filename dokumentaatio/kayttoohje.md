@@ -4,7 +4,7 @@ Lataa tiedosto [Tetris.jar](https://github.com/Marcestus/ot-harjoitustyo/release
 
 ## Konfigurointi: palikoiden putoamisnopeuden ja tietokantojen nimien vaihtaminen
 
-Ohjelman [src/main/resources/tetris](https://github.com/Marcestus/ot-harjoitustyo/tree/master/Tetris/src/main/resources/tetris) -kansiossa on konfiguraatiotiedosto config.properties. Tiedosto määrittelee sovelluksessa ja testeissä käytettävien tietokantojen nimet sekä pelin vaikeustasosta riippuvan palikoiden putoamisenopeuden. Tiedoston parametrejä muuttamalla tietokannat voidaan siis nimetä uudelleen ja pelinopeuksia säädellä mieleisiksi.
+Ohjelman [src/main/resources/tetris](https://github.com/Marcestus/ot-harjoitustyo/tree/master/Tetris/src/main/resources/tetris) -kansiossa on konfigurointitiedosto [config.properties](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/resources/tetris/config.properties). Tiedosto määrittelee sovelluksessa ja testeissä käytettävien tietokantojen nimet sekä pelin vaikeustasosta riippuvan palikoiden putoamisenopeuden. Tiedoston parametrejä muuttamalla tietokannat voidaan siis nimetä uudelleen ja pelinopeuksia säädellä mieleisiksi.
 
 Tiedosto sisältää seuraavat rivit, joista neljä ylempää säätelevät tietokantojen nimiä ja kolme alempaa pelinopeutta. Mitä pienempi pelinopeuden arvo, sitä nopeammin palikat putoavat.
 
@@ -53,5 +53,5 @@ Näkymä sisältää viisi parasta pelitulosta. Mikäli kaikki sijat ovat täynn
 
 ![LeaderboardScene](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/LeaderboardScene.png)
 
-Ohjelma tallentaa parhaat tulokset tietokantaan. Leaderboardin voi siis nollata poistamalla tietokannan. Tietokanta löytyy generoimisen jälkeen sovelluskansion [juuresta](https://github.com/Marcestus/ot-harjoitustyo/tree/master/Tetris). Tietokannan oletusnimi on *leaderboard.db* ja sen voi vaihtaa yllä olevilla ohjeilla sovelluksen konfiguraatiotiedostosta. Kun ohjelma käynnistetään poistamisen jälkeen uudestaan, se generoi automaattisesti uuden tyhjän tietokannan samaan paikkaan.
+Ohjelma tallentaa parhaat tulokset tietokantaan. Leaderboardin voi siis nollata poistamalla tietokannan. Tietokanta löytyy generoimisen jälkeen sovelluskansion [juuresta](https://github.com/Marcestus/ot-harjoitustyo/tree/master/Tetris). Tietokannan oletusnimi on *leaderboard.db* ja sen voi vaihtaa yllä olevilla ohjeilla sovelluksen konfigurointitiedostosta. Kun ohjelma käynnistetään poistamisen jälkeen uudestaan, se generoi automaattisesti uuden tyhjän tietokannan samaan paikkaan.
 
