@@ -40,7 +40,11 @@
 |        | 2    | tietokannan (leaderboard) koodaaminen, tietokantalogiikka |
 | 14.12. | 4    | tietokannan (leaderboard) koodaaminen, tietokantalogiikka |
 |        | 5    | ulkoasun koodaaminen, näkymät (menu, game, leaderboard) ja ui-logiikka |
-| yht    | 84   | |
+| 15.12. | 7    | koodin parantelua, vaikeustasojen lisääminen, dokumentointi: javadoc, vaatimusmäärittely, README.md |
+|        | 7    | testit, konfiguroitavuus, koodin korjailua |
+| 16.12. | 7    | dokumentointi: käyttöohje, arkkitehtuurikuvaus, testausdokumentti |
+| 17.12. | 1    | palautuksen viimeistely |
+| yht    | 106  | |
 
 
 vko 2 yht. 4 tuntia
@@ -53,7 +57,7 @@ vko 5 yht. 14 tuntia
 
 vko 6 yht. 19 tuntia
 
-vko 7 yht. 14 tuntia
+vko 7 yht. 36 tuntia
 
-**koko kurssi yhteensä 84 tuntia**
+**koko kurssi yhteensä 106 tuntia**
 
