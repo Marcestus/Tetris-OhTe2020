@@ -334,7 +334,6 @@ public class TetrisGameTest {
     @Test
     public void coordinatesThatAreTransferedToGameViewAreCorrect() {
         ArrayList<Tile> passiveTiles = randomGame.getPassiveTiles();
-        Tile[] tiles = randomGame.getActiveShapeTiles();
         passiveTiles.add(new Tile(2,18));
         boolean[][] activeShapeCoord = randomGame.getActiveShapeCoord();
         assertEquals(true, activeShapeCoord[5][1]);
@@ -349,7 +348,6 @@ public class TetrisGameTest {
     @Test
     public void fullRowsHandlerWorksCorrectly() {
         ArrayList<Tile> passiveTiles = randomGame.getPassiveTiles();
-        Tile[] tiles = randomGame.getActiveShapeTiles();
         randomGame.fullRowsHandler();
         assertEquals(0, passiveTiles.size());
         for (int i = 0; i < 10; i++) {
@@ -366,7 +364,6 @@ public class TetrisGameTest {
     @Test
     public void gameOverOccursCorrectly() {
         ArrayList<Tile> passiveTiles = randomGame.getPassiveTiles();
-        Tile[] tiles = randomGame.getActiveShapeTiles();
         assertEquals(false, randomGame.gameOver());
         passiveTiles.add(new Tile(5,2));
         randomGame.moveDown();

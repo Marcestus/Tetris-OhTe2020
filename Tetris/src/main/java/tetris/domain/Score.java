@@ -54,6 +54,7 @@ public class Score {
     /**
      * Pisteiden kasvattaminen.
      * Mitä enemmän rivejä saa poistettua kerralla, ja mitä kovemmalla vaikeustasolla pelaa, sitä enemmän pisteitä kertyy.
+     * @param fullRowsAtSameTime montako riviä on poistettu kerralla
      */
     public void addPoints(int fullRowsAtSameTime) {
         switch (fullRowsAtSameTime) {
@@ -73,6 +74,7 @@ public class Score {
     
     /**
      * Poistettujen rivien kokonaismäärän kasvattaminen poistettujen rivien määrällä.
+     * @param fullRowsAtSameTime montako riviä on poistettu kerralla
      */
     public void addClearedLines(int fullRowsAtSameTime) {
         this.setLinesCleared(this.getLinesCleared() + fullRowsAtSameTime);
