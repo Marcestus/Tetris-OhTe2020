@@ -126,7 +126,7 @@ Kun aktiivinen palikka ei pääse enää putoamaan, se muunnetaan passiivisiksi 
 
 Kun aktiivinen palikka ei mahdu enää putoamaan pelialueella, peli päättyy. Käyttöliittymä tarkistaa leaderboardin logiikasta vastaavalta luokalta, riittävätkö päättyneen pelin pisteet leaderboardiin pääsemiseen. Mikäli pisteet riittävät, siirrytään highscorenäkymään ja pyydetään pelaajalta nimimerkkiä. Kun nimimerkki on syötetty, pelitulos päivittyy tietokantaan ja siirrytään leaderboardnäkymään. Mikäli pisteet eivät riitä, siirrytään suoraan leaderboardnäkymään.
 
-Päivitä kuva
+![gameOverAndUpdateLeaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/gameOverAndUpdateLeaderboard.png)
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
