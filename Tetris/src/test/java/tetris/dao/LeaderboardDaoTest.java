@@ -1,5 +1,6 @@
 package tetris.dao;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -16,10 +17,14 @@ public class LeaderboardDaoTest {
     private String leaderboardDaoTestDatabaseName;
     private InputStream stream;
     
-    public LeaderboardDaoTest() throws Exception {
+    public LeaderboardDaoTest() {
         this.properties = new Properties();
         this.stream = LeaderboardDaoTest.class.getResourceAsStream("/tetris/config.properties");
-        this.properties.load(this.stream);
+        try {
+            this.properties.load(this.stream);
+        } catch (IOException e) {
+            System.out.println("Fetching file failed with message: " + e.getMessage());
+        }
         this.leaderboardDaoTestDatabaseName = properties.getProperty("leaderboardDaoTestDatabase");
         this.lbDaoTest = new LeaderboardDao(leaderboardDaoTestDatabaseName);
         this.leaderboard = new ArrayList<>();

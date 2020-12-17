@@ -1,5 +1,6 @@
 package tetris.domain;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -17,10 +18,14 @@ public class LeaderboardTest {
     private String leaderboardEmptyTestDatabaseName;
     private InputStream stream;
     
-    public LeaderboardTest() throws Exception{
+    public LeaderboardTest() {
         this.properties = new Properties();
         this.stream = LeaderboardTest.class.getResourceAsStream("/tetris/config.properties");
-        this.properties.load(this.stream);
+        try {
+            this.properties.load(this.stream);
+        } catch (IOException e) {
+            System.out.println("Fetching file failed with message: " + e.getMessage());
+        }
         this.leaderboardFullTestDatabaseName = properties.getProperty("leaderboardFullTestDatabase");
         this.leaderboardEmptyTestDatabaseName = properties.getProperty("leaderboardEmptyTestDatabase");
         this.leaderboardFull = new Leaderboard(leaderboardFullTestDatabaseName);
@@ -28,7 +33,7 @@ public class LeaderboardTest {
     }
     
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         leaderboardFull.addNewHighScoreToLeaderboard("Player1", 1000);
         leaderboardFull.addNewHighScoreToLeaderboard("Player2", 900);
         leaderboardFull.addNewHighScoreToLeaderboard("Player3", 200);

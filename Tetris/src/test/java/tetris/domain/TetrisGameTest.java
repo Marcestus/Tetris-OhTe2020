@@ -15,7 +15,7 @@ public class TetrisGameTest {
     TetrisGame shapeIGame;
     TetrisGame shapeTGame;
     
-    public TetrisGameTest() throws Exception {
+    public TetrisGameTest() {
         this.randomGame = new TetrisGame();
         this.shapeLGame = new TetrisGame(0);
         this.shapeJGame = new TetrisGame(1);

@@ -1,5 +1,6 @@
 package tetris.ui;
 
+import java.io.IOException;
 import java.io.InputStream;
 import javafx.animation.SequentialTransition;
 import javafx.animation.PauseTransition;
@@ -77,10 +78,14 @@ public class GameView extends Application {
     }
     
     @Override
-    public void init() throws Exception {
+    public void init() {
         this.properties = new Properties();
         this.stream = GameView.class.getResourceAsStream("/tetris/config.properties");
-        this.properties.load(this.stream);
+        try {
+            this.properties.load(this.stream);
+        } catch (IOException e) {
+            System.out.println("Fetching file failed with message: " + e.getMessage());
+        }
         this.leaderboardDatabaseName = properties.getProperty("leaderboardDatabase");
         resetTetrisGame();
     }
@@ -130,11 +135,7 @@ public class GameView extends Application {
     }
     
     private void resetTetrisGame() {
-        try {
-            game = new TetrisGame();
-        } catch (Exception e) {
-            System.out.println("Fetching file failed with message: " + e.getMessage());
-        }
+        game = new TetrisGame();
         leaderboard = new Leaderboard(leaderboardDatabaseName);
         gameOver = false;
         currentHighScore = leaderboard.getHighScore();

@@ -1,5 +1,6 @@
 package tetris.domain;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
@@ -40,10 +41,14 @@ public class TetrisGame {
     private Properties properties;
     private InputStream stream;
     
-    public TetrisGame() throws Exception {
+    public TetrisGame() {
         this.properties = new Properties();
         this.stream = TetrisGame.class.getResourceAsStream("/tetris/config.properties");
-        this.properties.load(this.stream);
+        try {
+            this.properties.load(this.stream);
+        } catch (IOException e) {
+            System.out.println("Fetching file failed with message: " + e.getMessage());
+        }
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();
@@ -71,10 +76,14 @@ public class TetrisGame {
      * Poikkeaa vain uuden aktiivisen palikan luomisen osalta.
      * @param type minkä tyyppinen uusi aktiivinen palikka luodaan
      */
-    public TetrisGame(int type) throws Exception {
+    public TetrisGame(int type) {
         this.properties = new Properties();
         this.stream = TetrisGame.class.getResourceAsStream("/tetris/config.properties");
-        this.properties.load(this.stream);
+        try {
+            this.properties.load(this.stream);
+        } catch (IOException e) {
+            System.out.println("Fetching file failed with message: " + e.getMessage());
+        }
         this.boardHeight = 20;
         this.boardWidth = 10;
         this.score = new Score();
