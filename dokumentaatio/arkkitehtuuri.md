@@ -4,7 +4,7 @@
 
 Ohjelman rakenne noudattaa kolmitasoista kerrosarkkitehtuuria, jossa tetris.ui käsittelee JavaFX -pohjaisen käyttöliittymän, tetris.domain sovelluslogiikan ja tetris.dao tietojen pysyväistalletuksen.
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/pakkausrakenne.png">
+![pakkausrakenne](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/pakkausrakenne.png)
 
 ## Käyttöliittymä
 
@@ -23,7 +23,7 @@ Käyttöliittymä on pyritty eriyttämään täysin sovelluslogiikasta. Sen tark
 
 Sovelluslogiikan perustan luovat luokat [Tile](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Tile.java), [Shape](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Shape.java) ja [Score](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Score.java). Näistä kaksi ensimmäistä kuvaavat Tetris-pelin palikoita ja niiden rakenneosia, tiiliä. Score pitää puolestaan yllä pelin pistetilannetta.
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaaviokuva.jpg">
+![luokkakaavioTetrisGame](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaavio1.jpg)
 
 Pelilogiikan perusluokkia hyödynnetään pelin sovelluslogiikasta vastaavassa [TetrisGame](https://github.com/Marcestus/ot-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/TetrisGame.java) -luokassa. Luokka tarjoaa mm. seuraavat metodit aktiivisen Tetris-palikan liikuttamiseen, täysien rivien poistamiseen sekä pistetilanteen päivittämiseen.
 
@@ -51,6 +51,8 @@ Sovelluksen src/main/resources/tetris -kansioon sijoitettu konfigurointitiedosto
 ArrayList<HighScore> getLeaderboard()
 boolean pointsEnoughForLeaderboard(int currentPoints)
 ```
+
+![LuokkakaavioLeaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaavio2.jpg)
 
 ## Tietojen pysyväistalletus ja tietojen hakeminen tietokannasta
 
@@ -81,7 +83,7 @@ ArrayList<HighScore> getLeaderBoardFromDatabase()
 
 **Ohjelman osien suhdetta kuvaava luokka/pakkauskaavio:**
 
-Puuttuu!
+![luokkienJaPakkaustenSuhdekaavio](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkienPakkaustenSuhde.jpg)
 
 ## Tiedostot
 
@@ -100,49 +102,28 @@ eli jokaisesta tuloksesta tallentuu yksilöivä id, pelaajan syöttämä nimimer
 
 Seuraavat sekvenssikaaviot kuvastavat sovelluksen edellä kuvattuja päätoiminnallisuuksia.
 
-**Palikan liikkuminen alaspäin**
-
-Aktiivinen palikka liikkuu tietyn ajan kuluessa yhden peliruudun verran alaspäin, mikäli se ei törmää pelialueen alareunaan tai passiivisiin palikoihin. Alla on kuvattuna molemmat tilanteet.
-
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/moveDown.png">
-
-**Palikan liikkuminen vasemmalle ja oikealle**
+**Palikan liikuttaminen vasemmalle ja oikealle**
 
 Aktiivinen palikka liikkuu pelaajan käskystä vasemmalle ja oikealle, mikäli se ei törmää passiivisiin tiiliin tai pelialueen reunoihin.
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rightAndLeft.png">
+![moveLeftAndRight](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/moveLeftAndMoveRight.png)
 
-**Palikan kääntyminen ja putoaminen alaspäin**
+**Palikan kääntäminen ja pudottaminen alas**
 
 Aktiivinen palikka kääntyy pelaajan käskystä sekä putoaa alaspäin, kunnes se osuu passiiviseen tiileen tai pelialueen alareunaan.
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rotateAndHardDrop.png">
+![rotateAndHardDrop](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rotateAndHardDrop.png)
 
-**Täysien vaakasuorien rivien poistuminen ja pisteiden päivittyminen**
+**Palikan liikkuminen alaspäin, uuden palikan luominen, täysien rivien poistaminen ja pistetilanteen päivittäminen**
 
+Aktiivinen palikka liikkuu tietyn ajan kuluessa yhden peliruudun verran alaspäin, mikäli se ei törmää pelialueen alareunaan tai passiivisiin palikoihin. Alla on kuvattuna molemmat tilanteet.
 Kun passiiviset tiilet muodostavat kokonaisen täyden rivin, se poistuu ja sen yläpuolella olevat passiiviset tiilet tippuvat alaspäin poistuneen rivin paikalle. Samalla pisteet päivittyvät.
 
-<img src="https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/FullRowsSequence.png">
+![moveDownAndFullRowsHandler](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/moveDownAndFullRowsHandler.png)
 
-**Putoamisnopeuden säätäminen valitun vaikeustason mukaan**
+**Pelin päättyminen ja pelituloksen tallentaminen tietokantaan**
 
-Puuttuu!
-
-**Pelin päättymistä indikoivien määreiden täyttymisen seuraaminen**
-
-Puuttuu!
-
-**Pelituloksen vertaaminen leaderboardin tuloksiin - päästäänkö leaderboardiin**
-
-Puuttuu!
-
-**Tietojen hakeminen tietokannasta**
-
-Puuttuu!
-
-**Tietojen tallentaminen tietokantaan**
-
-Puuttuu!
+![gameOverUpdateLeaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/gameOverUpdateLeaderboard.png)
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
