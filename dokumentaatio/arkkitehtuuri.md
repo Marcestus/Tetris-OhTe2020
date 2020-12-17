@@ -100,7 +100,7 @@ eli jokaisesta tuloksesta tallentuu yksilöivä id, pelaajan syöttämä nimimer
 
 ## Päätoiminnallisuudet
 
-Seuraavat sekvenssikaaviot kuvastavat sovelluksen edellä kuvattuja päätoiminnallisuuksia.
+Seuraavat sekvenssikaaviot kuvastavat sovelluksen päätoiminnallisuuksia.
 
 **Palikan liikuttaminen vasemmalle ja oikealle**
 
@@ -110,20 +110,23 @@ Aktiivinen palikka liikkuu pelaajan käskystä vasemmalle ja oikealle, mikäli s
 
 **Palikan kääntäminen ja pudottaminen alas**
 
-Aktiivinen palikka kääntyy pelaajan käskystä sekä putoaa alaspäin, kunnes se osuu passiiviseen tiileen tai pelialueen alareunaan.
+Aktiivinen palikka kääntyy pelaajan käskystä, mikäli se ei törmää passiivisiin tiiliin tai pelialueen reunoihin. Samalla tavoin palikka putoaa suoraan paikoilleen pelaajan käskystä.
 
 ![rotateAndHardDrop](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rotateAndHardDrop.png)
 
 **Palikan liikkuminen alaspäin, uuden palikan luominen, täysien rivien poistaminen ja pistetilanteen päivittäminen**
 
-Aktiivinen palikka liikkuu tietyn ajan kuluessa yhden peliruudun verran alaspäin, mikäli se ei törmää pelialueen alareunaan tai passiivisiin palikoihin. Alla on kuvattuna molemmat tilanteet.
-Kun passiiviset tiilet muodostavat kokonaisen täyden rivin, se poistuu ja sen yläpuolella olevat passiiviset tiilet tippuvat alaspäin poistuneen rivin paikalle. Samalla pisteet päivittyvät.
+Aktiivinen palikka liikkuu tietyn ajan kuluessa yhden peliruudun verran alaspäin, mikäli se ei törmää pelialueen alareunaan tai passiivisiin palikoihin. Tämän jälkeen sovelluslogiikka tarkistaa, löytyykö pelialueelta täysiä vaakasuoria rivejä poistettavaksi.
+
+Kun aktiivinen palikka ei pääse enää putoamaan, se muunnetaan passiivisiksi tiiliksi. Samalla luodaan uusi aktiivinen palikka, joka generoituu pelialueen yläreunaan. Tämän jälkeen sovelluslogiikka tarkistaa taas, löytyykö pelialueelta täysiä vaakasuoria rivejä poistettavaksi. Kun täysi rivi löytyy, se poistuu ja sen yläpuolella olevat passiiviset tiilet tippuvat alaspäin poistuneen rivin paikalle. Samalla pisteet päivittyvät.
 
 ![moveDownAndFullRowsHandler](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/moveDownAndFullRowsHandler.png)
 
 **Pelin päättyminen ja pelituloksen tallentaminen tietokantaan**
 
-![gameOverUpdateLeaderboard](https://github.com/Marcestus/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/gameOverUpdateLeaderboard.png)
+Kun aktiivinen palikka ei mahdu enää putoamaan pelialueella, peli päättyy. Käyttöliittymä tarkistaa leaderboardin logiikasta vastaavalta luokalta, riittävätkö päättyneen pelin pisteet leaderboardiin pääsemiseen. Mikäli pisteet riittävät, siirrytään highscorenäkymään ja pyydetään pelaajalta nimimerkkiä. Kun nimimerkki on syötetty, pelitulos päivittyy tietokantaan ja siirrytään leaderboardnäkymään. Mikäli pisteet eivät riitä, siirrytään suoraan leaderboardnäkymään.
+
+Päivitä kuva
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
